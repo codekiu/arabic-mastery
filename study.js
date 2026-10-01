@@ -8,6 +8,18 @@ let storageOK=true;
 let state={version:1,active:'principal',lists:[{id:'principal',name:'Mi estudio',words:[],results:[]}],reviews:{}};
 let mode='home',filter='all',search='',topic='all',session=null,detailId=null,editingList=null;
 let sessionSize='10',direction='ar';
+const preferencesKey='vocabulario-arabe-preferencias-v1';
+let preferences={showExamples:false,darkMode:false};
+try{const saved=JSON.parse(localStorage.getItem(preferencesKey));if(saved&&typeof saved==='object')preferences={showExamples:saved.showExamples===true,darkMode:saved.darkMode===true};}catch(e){}
+function applyPreferences(){
+  document.documentElement.setAttribute('data-theme',preferences.darkMode?'dark':'light');
+  $('theme-toggle').setAttribute('aria-pressed',String(preferences.darkMode));
+  $('theme-toggle').textContent=preferences.darkMode?'Modo claro':'Modo oscuro';
+  $('examples-toggle').setAttribute('aria-pressed',String(preferences.showExamples));
+  $('examples-toggle').textContent=preferences.showExamples?'Ocultar ejemplos':'Mostrar ejemplos';
+}
+function savePreferences(){try{localStorage.setItem(preferencesKey,JSON.stringify(preferences));}catch(e){announce('No se puede guardar este ajuste. Se mantendrá mientras la página siga abierta.');}applyPreferences();}
+applyPreferences();
 const kinds={verb:'Verbo',noun:'Sustantivo',adjective:'Adjetivo'};
 const pages={home:['UN ESPACIO PARA APRENDER','Tu árabe, a tu ritmo.','Encuentra tus palabras, organízalas y practica cuando quieras.'],catalog:['EXPLORA Y ELIGE','Biblioteca de palabras','300 palabras, con cuatro ejemplos para entenderlas en contexto.'],lists:['TU VOCABULARIO','Mis listas','Organiza lo que quieres aprender y empieza una sesión desde aquí.'],progress:['TU APRENDIZAJE','Progreso y repasos','Consulta lo que has practicado y los resultados de tus exámenes.'],settings:['TODO EN SU SITIO','Ajustes y copias','Conserva tus listas y llévalas contigo a otra versión de la app.']};
 function validateState(data){
@@ -54,7 +66,7 @@ function addWords(listId,ids){
 function toggleWord(id){const l=activeList(),exists=l.words.includes(id);l.words=exists?l.words.filter(x=>x!==id):[...l.words,id];persist(exists?'Palabra retirada de «'+l.name+'».':'Palabra añadida a «'+l.name+'».');render();if(detailId)renderDetail();}
 function levelLabel(w){const r=state.reviews[w.number];return !r?'Sin repasar':r.level>=3?'En consolidación':'En práctica';}
 function examplesHtml(w){return `<ol class="examples">${w.examples.map(([ar,es])=>`<li><p class="example-ar arabic" lang="ar" dir="rtl">${escapeHtml(ar)}</p><p class="example-es" lang="es" dir="ltr">${escapeHtml(es)}</p></li>`).join('')}</ol>`;}
-function cardHtml(w){const added=activeList().words.includes(String(w.number));return `<article class="word-card"><div class="word-card-top"><span class="kind">${kinds[w.kind]}</span><span class="word-id">${String(w.number).padStart(3,'0')}</span></div><h3 class="term arabic" lang="ar" dir="rtl">${escapeHtml(w.ar)}</h3><p class="meaning">${escapeHtml(w.es)}</p><div class="word-card-footer"><button class="text-button" data-detail="${w.number}">Ver 4 ejemplos <span aria-hidden="true">↗</span></button><button class="add-word" data-word="${w.number}" aria-pressed="${added}" aria-label="${added?'Retirar de':'Añadir a'} ${escapeHtml(activeList().name)}: ${escapeHtml(w.es)}">${added?'✓':'+'}</button></div></article>`;}
+function cardHtml(w){const added=activeList().words.includes(String(w.number));return `<article class="word-card"><div class="word-card-top"><span class="kind">${kinds[w.kind]}</span><span class="word-id">${String(w.number).padStart(3,'0')}</span></div><h3 class="term arabic" lang="ar" dir="rtl">${escapeHtml(w.ar)}</h3><p class="meaning">${escapeHtml(w.es)}</p>${preferences.showExamples?'<div class="inline-examples">'+examplesHtml(w)+'</div>':''}<div class="word-card-footer"><button class="text-button" data-detail="${w.number}">${preferences.showExamples?'Abrir ficha':'Ver 4 ejemplos'}</button><button class="add-word" data-word="${w.number}" aria-pressed="${added}" aria-label="${added?'Retirar de':'Añadir a'} ${escapeHtml(activeList().name)}: ${escapeHtml(w.es)}">${added?'✓':'+'}</button></div></article>`;}
 function selectOptions(){return state.lists.map(l=>`<option value="${escapeHtml(l.id)}" ${l.id===state.active?'selected':''}>${escapeHtml(l.name)}</option>`).join('');}
 function metric(label,value,note){return `<div class="metric"><p class="metric-label">${label}</p><strong class="metric-value">${value}</strong><small>${note}</small></div>`;}
 function listRows(){return state.lists.slice(0,4).map(l=>`<div class="list-row"><div class="list-info"><span class="list-cover" aria-hidden="true">▱</span><div><button class="list-row-name" data-list="${escapeHtml(l.id)}">${escapeHtml(l.name)}</button><small>${plural(l.words.length,'palabra')} · ${plural(dueWords(l.words.map(id=>byId.get(id))).length,'repaso pendiente','repasos pendientes')}</small></div></div><button class="text-button" data-list="${escapeHtml(l.id)}" aria-label="Abrir ${escapeHtml(l.name)}">Abrir →</button></div>`).join('');}
@@ -94,7 +106,7 @@ function render(){
   $('list-select').innerHTML=selectOptions();
   const shown=words.filter(w=>(filter==='all'||w.kind===filter)&&(topic==='all'||w.topic===Number(topic))&&(mode!=='lists'||activeList().words.includes(String(w.number)))&&normalize(w.ar+' '+w.es).includes(search));
   $('catalog-summary').textContent=plural(shown.length,'palabra')+(mode==='lists'?' en esta vista':' en la biblioteca');
-  $('content').innerHTML=shown.length?`<div class="word-grid">${shown.map(cardHtml).join('')}</div>`:`<div class="empty"><h2>${mode==='lists'&&!activeList().words.length?'Tu lista está lista para empezar.':'No encontramos esa palabra.'}</h2><p>${mode==='lists'&&!activeList().words.length?'Elige palabras de la Biblioteca y añádelas a «'+escapeHtml(activeList().name)+'».':'Prueba otra búsqueda o quita un filtro.'}</p><button class="button" data-action="${mode==='lists'&&!activeList().words.length?'explore':'clear-filters'}">${mode==='lists'&&!activeList().words.length?'Explorar biblioteca':'Limpiar filtros'}</button></div>`;
+  $('content').innerHTML=shown.length?`<div class="word-grid ${preferences.showExamples?'show-examples':''}">${shown.map(cardHtml).join('')}</div>`:`<div class="empty"><h2>${mode==='lists'&&!activeList().words.length?'Tu lista está lista para empezar.':'No encontramos esa palabra.'}</h2><p>${mode==='lists'&&!activeList().words.length?'Elige palabras de la Biblioteca y añádelas a «'+escapeHtml(activeList().name)+'».':'Prueba otra búsqueda o quita un filtro.'}</p><button class="button" data-action="${mode==='lists'&&!activeList().words.length?'explore':'clear-filters'}">${mode==='lists'&&!activeList().words.length?'Explorar biblioteca':'Limpiar filtros'}</button></div>`;
 }
 function switchMode(next){if(!pages[next])return;mode=next;session=null;filter='all';search='';topic='all';$('search').value='';$('topic-filter').value='all';document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.filter==='all')));render();}
 function openList(id){if(!state.lists.some(l=>l.id===id))return;state.active=id;persist('Lista seleccionada.');switchMode('lists');}
@@ -112,6 +124,8 @@ $('topic-filter').innerHTML='<option value="all">Todos los temas</option>'+group
 $('topic-filter').onchange=e=>{topic=e.target.value;render();};
 document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));render();});
 $('search').oninput=e=>{search=normalize(e.target.value.trim());render();};
+$('theme-toggle').onclick=()=>{preferences.darkMode=!preferences.darkMode;savePreferences();};
+$('examples-toggle').onclick=()=>{preferences.showExamples=!preferences.showExamples;savePreferences();render();};
 $('study').onclick=e=>{const hidden=document.body.classList.toggle('hidden-translation');e.currentTarget.setAttribute('aria-pressed',String(hidden));e.currentTarget.textContent=hidden?'Mostrar significados':'Ocultar significados';};
 $('list-dialog-close').onclick=()=>$('list-dialog').close();
 $('list-form').onsubmit=e=>{e.preventDefault();const name=$('list-name').value.trim();try{if(!name||name.length>60)throw Error('Escribe un nombre de entre 1 y 60 caracteres.');if(editingList){state.lists.find(l=>l.id===editingList).name=name;persist('Lista renombrada.');render();}else createList(name);$('list-dialog').close();}catch(err){$('list-form-error').textContent=err.message;}};

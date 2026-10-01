@@ -12,6 +12,15 @@
 .main-nav .mobile-settings{display:none}@media(max-width:800px){.main-nav .mobile-settings{display:flex}.main-nav button{min-width:0}}
 
 .page-header>div{min-width:0}h1{overflow-wrap:anywhere}.collection-meta{flex-wrap:wrap;gap:12px}.list-info>div{min-width:0}.main-nav button{white-space:normal}.list-study-panel h2{overflow-wrap:anywhere}@media(max-width:350px){.main-nav{gap:2px}.main-nav button{padding-inline:2px;font-size:10px}.course-tag span{display:none}.tabs button{padding-inline:7px}.hero{padding:20px}.session-head{flex-wrap:wrap}}
+
+.topbar-actions{display:flex;align-items:center;gap:18px;min-width:0}.theme-toggle{font-size:14px;white-space:nowrap;padding:9px 12px}.view-controls{display:flex;align-items:center;gap:18px;flex-wrap:wrap}.view-controls .button{font-size:14px}.view-controls .button[aria-pressed=true]{background:var(--mint);border-color:var(--green);color:var(--green)}.word-grid.show-examples{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}.inline-examples .examples{margin-top:0}.inline-examples .example-es{font-size:16px}.inline-examples .example-ar{font-size:25px}.inline-examples{margin-bottom:14px}
+:root[data-theme=dark]{color-scheme:dark;color:#e5eee8;background:#101b18;--green:#8bd8b4;--ink:#e5eee8;--muted:#afc1b6;--border:#34483c;--paper:#1b2a23;--mint:#294537;--gold:#e9c985}
+[data-theme=dark] .sidebar,[data-theme=dark] .metric,[data-theme=dark] .panel,[data-theme=dark] .word-card,[data-theme=dark] .list-tile,[data-theme=dark] .list-study-panel,[data-theme=dark] .session-card,[data-theme=dark] dialog,[data-theme=dark] .search,[data-theme=dark] select,[data-theme=dark] .field input,[data-theme=dark] .file-panel textarea,[data-theme=dark] .empty,[data-theme=dark] .icon-button,[data-theme=dark] .skip{background:var(--paper);color:var(--ink);border-color:var(--border)}
+[data-theme=dark] .button{background:#22362b;color:var(--ink);border-color:#49614e}[data-theme=dark] .button:hover,[data-theme=dark] .main-nav button:hover,[data-theme=dark] .settings-nav:hover{background:#304b3b}[data-theme=dark] .primary{background:var(--green);border-color:var(--green);color:#10291e}[data-theme=dark] .primary:hover{background:#a8e6c5}
+[data-theme=dark] .main-nav button,[data-theme=dark] .settings-nav,[data-theme=dark] .meaning{color:var(--muted)}[data-theme=dark] .main-nav button[aria-current=page]{background:var(--mint);color:var(--green)}[data-theme=dark] .brand-mark{color:#10291e}[data-theme=dark] .term{color:#c8eed7}[data-theme=dark] .kind,[data-theme=dark] .list-cover,[data-theme=dark] .status-pill,[data-theme=dark] .add-word{background:#2a3f31;color:#b5d9bd;border-color:var(--border)}[data-theme=dark] .word-id,[data-theme=dark] .nav-caption{color:#a9b9ad}[data-theme=dark] .add-word[aria-pressed=true],[data-theme=dark] .list-tile[aria-pressed=true],[data-theme=dark] .tabs button[aria-pressed=true],[data-theme=dark] .view-controls .button[aria-pressed=true]{background:var(--mint);color:var(--green);border-color:var(--green)}
+[data-theme=dark] .list-row,[data-theme=dark] .word-card-footer,[data-theme=dark] .examples li,[data-theme=dark] .history-table td{border-color:var(--border)}[data-theme=dark] .step-number,[data-theme=dark] .lesson-note{background:#3a3525;color:#eed597}[data-theme=dark] progress,[data-theme=dark] progress::-webkit-progress-bar{background:#324738}[data-theme=dark] progress::-webkit-progress-value{background:var(--green)}[data-theme=dark] .question-options button{background:#22362b;color:var(--ink);border-color:#49614e}[data-theme=dark] .question-options button.correct,[data-theme=dark] .feedback{background:#284b34;color:#d3eed8;border-color:#73a986}[data-theme=dark] .question-options button.wrong,[data-theme=dark] .feedback.error{background:#4c302b;color:#ffd7cc;border-color:#b27f70}[data-theme=dark] .danger,[data-theme=dark] .error{color:#f1afa1}[data-theme=dark] .hero{background:#214b39}[data-theme=dark] .hero .button{background:#e1f1e6;color:#19432e;border-color:#e1f1e6}[data-theme=dark] .hero .button:hover{background:#c9e5d4}
+@media(max-width:800px){.word-grid.show-examples{grid-template-columns:1fr}.topbar{height:auto;min-height:64px;padding-block:12px}.topbar-actions{gap:10px}.course-tag span{display:none}}
+@media(max-width:500px){.topbar>span:first-child{display:none}.topbar-actions{justify-content:space-between;width:100%}.view-controls{gap:14px}.inline-examples .example-ar{font-size:26px}}
 </style>
 </head>
 <body>
@@ -30,7 +39,7 @@
       <div class="sidebar-bottom"><div class="sidebar-note"><strong>300 palabras. Tu ritmo.</strong><p>Aprende en contexto, recuerda y vuelve a practicar.</p></div><button class="settings-nav" data-page="settings"><span aria-hidden="true">⚙</span>Ajustes y copias</button><span class="local-label"><i></i> Tu estudio se guarda aquí</span></div>
     </aside>
     <main id="main" class="main">
-      <header class="topbar"><span id="breadcrumb">Tu espacio de aprendizaje</span><span class="course-tag">العَرَبِيَّةُ <span>Árabe fuṣḥā</span></span></header>
+      <header class="topbar"><span id="breadcrumb">Tu espacio de aprendizaje</span><div class="topbar-actions"><span class="course-tag">العَرَبِيَّةُ <span>Árabe fuṣḥā</span></span><button class="button theme-toggle" id="theme-toggle" aria-pressed="false">Modo oscuro</button></div></header>
       <div class="page-header"><div><p id="page-kicker" class="eyebrow">UN POCO CADA DÍA</p><h1 id="page-title">Tu próximo paso.</h1><p id="page-description" class="muted">Haz espacio para unas palabras nuevas.</p></div><span id="today-date" class="date"></span></div>
       <section id="dashboard"></section>
       <section id="workspace" class="workspace" hidden></section>
@@ -43,7 +52,7 @@
           <select id="topic-filter" aria-label="Filtrar por tema"><option value="all">Todos los temas</option></select>
         </div>
         <div class="collection-controls"><div class="tabs" role="group" aria-label="Filtrar por tipo"><button data-filter="all" aria-pressed="true">Todas</button><button data-filter="verb" aria-pressed="false">Verbos</button><button data-filter="noun" aria-pressed="false">Sustantivos</button><button data-filter="adjective" aria-pressed="false">Adjetivos</button></div><label class="list-target">Añadir a <select id="list-select" aria-label="Lista de estudio"></select></label></div>
-        <div class="collection-meta"><p id="catalog-summary"></p><button class="text-button" id="study" aria-pressed="false">Ocultar significados</button></div>
+        <div class="collection-meta"><p id="catalog-summary"></p><div class="view-controls"><button class="button" id="examples-toggle" aria-pressed="false" aria-controls="content">Mostrar ejemplos</button><button class="text-button" id="study" aria-pressed="false">Ocultar significados</button></div></div>
         <div id="content"></div>
       </section>
       <p id="status" class="status" role="status" aria-live="polite"></p>
@@ -196,6 +205,18 @@ let storageOK=true;
 let state={version:1,active:'principal',lists:[{id:'principal',name:'Mi estudio',words:[],results:[]}],reviews:{}};
 let mode='home',filter='all',search='',topic='all',session=null,detailId=null,editingList=null;
 let sessionSize='10',direction='ar';
+const preferencesKey='vocabulario-arabe-preferencias-v1';
+let preferences={showExamples:false,darkMode:false};
+try{const saved=JSON.parse(localStorage.getItem(preferencesKey));if(saved&&typeof saved==='object')preferences={showExamples:saved.showExamples===true,darkMode:saved.darkMode===true};}catch(e){}
+function applyPreferences(){
+  document.documentElement.setAttribute('data-theme',preferences.darkMode?'dark':'light');
+  $('theme-toggle').setAttribute('aria-pressed',String(preferences.darkMode));
+  $('theme-toggle').textContent=preferences.darkMode?'Modo claro':'Modo oscuro';
+  $('examples-toggle').setAttribute('aria-pressed',String(preferences.showExamples));
+  $('examples-toggle').textContent=preferences.showExamples?'Ocultar ejemplos':'Mostrar ejemplos';
+}
+function savePreferences(){try{localStorage.setItem(preferencesKey,JSON.stringify(preferences));}catch(e){announce('No se puede guardar este ajuste. Se mantendrá mientras la página siga abierta.');}applyPreferences();}
+applyPreferences();
 const kinds={verb:'Verbo',noun:'Sustantivo',adjective:'Adjetivo'};
 const pages={home:['UN ESPACIO PARA APRENDER','Tu árabe, a tu ritmo.','Encuentra tus palabras, organízalas y practica cuando quieras.'],catalog:['EXPLORA Y ELIGE','Biblioteca de palabras','300 palabras, con cuatro ejemplos para entenderlas en contexto.'],lists:['TU VOCABULARIO','Mis listas','Organiza lo que quieres aprender y empieza una sesión desde aquí.'],progress:['TU APRENDIZAJE','Progreso y repasos','Consulta lo que has practicado y los resultados de tus exámenes.'],settings:['TODO EN SU SITIO','Ajustes y copias','Conserva tus listas y llévalas contigo a otra versión de la app.']};
 function validateState(data){
@@ -242,7 +263,7 @@ function addWords(listId,ids){
 function toggleWord(id){const l=activeList(),exists=l.words.includes(id);l.words=exists?l.words.filter(x=>x!==id):[...l.words,id];persist(exists?'Palabra retirada de «'+l.name+'».':'Palabra añadida a «'+l.name+'».');render();if(detailId)renderDetail();}
 function levelLabel(w){const r=state.reviews[w.number];return !r?'Sin repasar':r.level>=3?'En consolidación':'En práctica';}
 function examplesHtml(w){return `<ol class="examples">${w.examples.map(([ar,es])=>`<li><p class="example-ar arabic" lang="ar" dir="rtl">${escapeHtml(ar)}</p><p class="example-es" lang="es" dir="ltr">${escapeHtml(es)}</p></li>`).join('')}</ol>`;}
-function cardHtml(w){const added=activeList().words.includes(String(w.number));return `<article class="word-card"><div class="word-card-top"><span class="kind">${kinds[w.kind]}</span><span class="word-id">${String(w.number).padStart(3,'0')}</span></div><h3 class="term arabic" lang="ar" dir="rtl">${escapeHtml(w.ar)}</h3><p class="meaning">${escapeHtml(w.es)}</p><div class="word-card-footer"><button class="text-button" data-detail="${w.number}">Ver 4 ejemplos <span aria-hidden="true">↗</span></button><button class="add-word" data-word="${w.number}" aria-pressed="${added}" aria-label="${added?'Retirar de':'Añadir a'} ${escapeHtml(activeList().name)}: ${escapeHtml(w.es)}">${added?'✓':'+'}</button></div></article>`;}
+function cardHtml(w){const added=activeList().words.includes(String(w.number));return `<article class="word-card"><div class="word-card-top"><span class="kind">${kinds[w.kind]}</span><span class="word-id">${String(w.number).padStart(3,'0')}</span></div><h3 class="term arabic" lang="ar" dir="rtl">${escapeHtml(w.ar)}</h3><p class="meaning">${escapeHtml(w.es)}</p>${preferences.showExamples?'<div class="inline-examples">'+examplesHtml(w)+'</div>':''}<div class="word-card-footer"><button class="text-button" data-detail="${w.number}">${preferences.showExamples?'Abrir ficha':'Ver 4 ejemplos'}</button><button class="add-word" data-word="${w.number}" aria-pressed="${added}" aria-label="${added?'Retirar de':'Añadir a'} ${escapeHtml(activeList().name)}: ${escapeHtml(w.es)}">${added?'✓':'+'}</button></div></article>`;}
 function selectOptions(){return state.lists.map(l=>`<option value="${escapeHtml(l.id)}" ${l.id===state.active?'selected':''}>${escapeHtml(l.name)}</option>`).join('');}
 function metric(label,value,note){return `<div class="metric"><p class="metric-label">${label}</p><strong class="metric-value">${value}</strong><small>${note}</small></div>`;}
 function listRows(){return state.lists.slice(0,4).map(l=>`<div class="list-row"><div class="list-info"><span class="list-cover" aria-hidden="true">▱</span><div><button class="list-row-name" data-list="${escapeHtml(l.id)}">${escapeHtml(l.name)}</button><small>${plural(l.words.length,'palabra')} · ${plural(dueWords(l.words.map(id=>byId.get(id))).length,'repaso pendiente','repasos pendientes')}</small></div></div><button class="text-button" data-list="${escapeHtml(l.id)}" aria-label="Abrir ${escapeHtml(l.name)}">Abrir →</button></div>`).join('');}
@@ -282,7 +303,7 @@ function render(){
   $('list-select').innerHTML=selectOptions();
   const shown=words.filter(w=>(filter==='all'||w.kind===filter)&&(topic==='all'||w.topic===Number(topic))&&(mode!=='lists'||activeList().words.includes(String(w.number)))&&normalize(w.ar+' '+w.es).includes(search));
   $('catalog-summary').textContent=plural(shown.length,'palabra')+(mode==='lists'?' en esta vista':' en la biblioteca');
-  $('content').innerHTML=shown.length?`<div class="word-grid">${shown.map(cardHtml).join('')}</div>`:`<div class="empty"><h2>${mode==='lists'&&!activeList().words.length?'Tu lista está lista para empezar.':'No encontramos esa palabra.'}</h2><p>${mode==='lists'&&!activeList().words.length?'Elige palabras de la Biblioteca y añádelas a «'+escapeHtml(activeList().name)+'».':'Prueba otra búsqueda o quita un filtro.'}</p><button class="button" data-action="${mode==='lists'&&!activeList().words.length?'explore':'clear-filters'}">${mode==='lists'&&!activeList().words.length?'Explorar biblioteca':'Limpiar filtros'}</button></div>`;
+  $('content').innerHTML=shown.length?`<div class="word-grid ${preferences.showExamples?'show-examples':''}">${shown.map(cardHtml).join('')}</div>`:`<div class="empty"><h2>${mode==='lists'&&!activeList().words.length?'Tu lista está lista para empezar.':'No encontramos esa palabra.'}</h2><p>${mode==='lists'&&!activeList().words.length?'Elige palabras de la Biblioteca y añádelas a «'+escapeHtml(activeList().name)+'».':'Prueba otra búsqueda o quita un filtro.'}</p><button class="button" data-action="${mode==='lists'&&!activeList().words.length?'explore':'clear-filters'}">${mode==='lists'&&!activeList().words.length?'Explorar biblioteca':'Limpiar filtros'}</button></div>`;
 }
 function switchMode(next){if(!pages[next])return;mode=next;session=null;filter='all';search='';topic='all';$('search').value='';$('topic-filter').value='all';document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.filter==='all')));render();}
 function openList(id){if(!state.lists.some(l=>l.id===id))return;state.active=id;persist('Lista seleccionada.');switchMode('lists');}
@@ -300,6 +321,8 @@ $('topic-filter').innerHTML='<option value="all">Todos los temas</option>'+group
 $('topic-filter').onchange=e=>{topic=e.target.value;render();};
 document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));render();});
 $('search').oninput=e=>{search=normalize(e.target.value.trim());render();};
+$('theme-toggle').onclick=()=>{preferences.darkMode=!preferences.darkMode;savePreferences();};
+$('examples-toggle').onclick=()=>{preferences.showExamples=!preferences.showExamples;savePreferences();render();};
 $('study').onclick=e=>{const hidden=document.body.classList.toggle('hidden-translation');e.currentTarget.setAttribute('aria-pressed',String(hidden));e.currentTarget.textContent=hidden?'Mostrar significados':'Ocultar significados';};
 $('list-dialog-close').onclick=()=>$('list-dialog').close();
 $('list-form').onsubmit=e=>{e.preventDefault();const name=$('list-name').value.trim();try{if(!name||name.length>60)throw Error('Escribe un nombre de entre 1 y 60 caracteres.');if(editingList){state.lists.find(l=>l.id===editingList).name=name;persist('Lista renombrada.');render();}else createList(name);$('list-dialog').close();}catch(err){$('list-form-error').textContent=err.message;}};

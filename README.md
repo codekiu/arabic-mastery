@@ -13,6 +13,8 @@
 
 **Inicio** ofrece acceso a las listas y repasos pendientes. **Progreso** muestra próximos repasos y resultados reales. La interfaz tiene navegación persistente, fichas compactas y cuatro ejemplos por palabra en una ventana de detalle. No incluye puntos, premios ni rachas.
 
+En la Biblioteca, **Mostrar ejemplos / Ocultar ejemplos** despliega o pliega los cuatro ejemplos de todas las palabras de la vista. El botón **Modo oscuro / Modo claro** está en la parte superior de cualquier pantalla. Ambos ajustes se conservan localmente al volver a abrir la web o la app.
+
 Los intervalos de repaso son una heurística de 1, 3, 7, 14 y 30 días; no un algoritmo adaptativo validado. Consulta [la investigación y decisiones de diseño](docs/diseno-ux.md).
 
 Las listas se guardan localmente. No se sincronizan automáticamente entre la app, la web ni dispositivos. Guarda una copia para trasladarlas o conservar un respaldo.

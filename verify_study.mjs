@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
 const nodes=new Map();const node=()=>({textContent:'',value:'',hidden:false,disabled:false,setAttribute(){},removeAttribute(){},addEventListener(){},querySelectorAll(){return [];},parentElement:{parentElement:{}},focus(){},scrollIntoView(){},showModal(){},close(){}});
-const document={addEventListener(){},getElementById(id){if(!nodes.has(id))nodes.set(id,node());return nodes.get(id);},querySelector(){return node();},querySelectorAll(){return [];}};
+const document={documentElement:node(),addEventListener(){},getElementById(id){if(!nodes.has(id))nodes.set(id,node());return nodes.get(id);},querySelector(){return node();},querySelectorAll(){return [];}};
 let saved;
 const sandbox={document,localStorage:{getItem(){return null;},setItem(k,v){saved=v;}},window:{addEventListener(){}},setTimeout,Date,crypto:{randomUUID:()=>String(Math.random())},console};
 const script=fs.readFileSync('dist/index.html','utf8').split('<script>')[1].split('</script>')[0];

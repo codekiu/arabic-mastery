@@ -25,7 +25,7 @@
       <div class="sidebar-bottom"><div class="sidebar-note"><strong>300 palabras. Tu ritmo.</strong><p>Aprende en contexto, recuerda y vuelve a practicar.</p></div><button class="settings-nav" data-page="settings"><span aria-hidden="true">⚙</span>Ajustes y copias</button><span class="local-label"><i></i> Tu estudio se guarda aquí</span></div>
     </aside>
     <main id="main" class="main">
-      <header class="topbar"><span id="breadcrumb">Tu espacio de aprendizaje</span><span class="course-tag">العَرَبِيَّةُ <span>Árabe fuṣḥā</span></span></header>
+      <header class="topbar"><span id="breadcrumb">Tu espacio de aprendizaje</span><div class="topbar-actions"><span class="course-tag">العَرَبِيَّةُ <span>Árabe fuṣḥā</span></span><button class="button theme-toggle" id="theme-toggle" aria-pressed="false">Modo oscuro</button></div></header>
       <div class="page-header"><div><p id="page-kicker" class="eyebrow">UN POCO CADA DÍA</p><h1 id="page-title">Tu próximo paso.</h1><p id="page-description" class="muted">Haz espacio para unas palabras nuevas.</p></div><span id="today-date" class="date"></span></div>
       <section id="dashboard"></section>
       <section id="workspace" class="workspace" hidden></section>
@@ -38,7 +38,7 @@
           <select id="topic-filter" aria-label="Filtrar por tema"><option value="all">Todos los temas</option></select>
         </div>
         <div class="collection-controls"><div class="tabs" role="group" aria-label="Filtrar por tipo"><button data-filter="all" aria-pressed="true">Todas</button><button data-filter="verb" aria-pressed="false">Verbos</button><button data-filter="noun" aria-pressed="false">Sustantivos</button><button data-filter="adjective" aria-pressed="false">Adjetivos</button></div><label class="list-target">Añadir a <select id="list-select" aria-label="Lista de estudio"></select></label></div>
-        <div class="collection-meta"><p id="catalog-summary"></p><button class="text-button" id="study" aria-pressed="false">Ocultar significados</button></div>
+        <div class="collection-meta"><p id="catalog-summary"></p><div class="view-controls"><button class="button" id="examples-toggle" aria-pressed="false" aria-controls="content">Mostrar ejemplos</button><button class="text-button" id="study" aria-pressed="false">Ocultar significados</button></div></div>
         <div id="content"></div>
       </section>
       <p id="status" class="status" role="status" aria-live="polite"></p>
