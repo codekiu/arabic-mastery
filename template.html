@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d2447">
+  <meta name="description" content="100 palabras del texto árabe con cuatro ejemplos en árabe y español para estudiar y repasar.">
+  <title>Vocabulario árabe · 100 palabras del texto</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d2447'/%3E%3Cpath d='M17 20h30v5H17zm0 10h22v5H17zm0 10h30v5H17z' fill='%23f6c96d'/%3E%3C/svg%3E">
+  <style>
+    :root { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #102443; background: #edf3f8; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; }
+    button { font: inherit; cursor: pointer; }
+    .shell { max-width: 1220px; padding: 28px 28px 90px; margin: auto; }
+    .top { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 26px; }
+    .eyebrow { color: #47729e; font-size: .83rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; margin: 0 0 8px; }
+    h1 { font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.05; letter-spacing: -.045em; margin: 0; }
+    .intro { margin: 12px 0 0; color: #52647e; line-height: 1.55; font-size: 1rem; max-width: 560px; }
+    .count { flex: none; background: #0d2447; color: white; border-radius: 22px; padding: 16px 20px; min-width: 122px; text-align: center; box-shadow: 0 12px 26px #0d244720; }
+    .count strong { display: block; font-size: 2rem; line-height: 1; }
+    .count span { display: block; margin-top: 4px; color: #b9cbe2; font-size: .8rem; }
+    .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 30px; }
+    .tabs { display: inline-flex; flex-wrap: wrap; gap: 5px; border-radius: 15px; background: #dae5ef; padding: 5px; }
+    .tabs button { border: 0; border-radius: 11px; background: transparent; color: #52647e; padding: 10px 16px; font-size: .9rem; font-weight: 700; }
+    .tabs button[aria-pressed="true"] { color: #0d2447; background: white; box-shadow: 0 2px 8px #0d244719; }
+    .study { border: 1px solid #afc3d6; color: #0d2447; background: #fff; border-radius: 12px; padding: 12px 17px; font-weight: 700; }
+    .study[aria-pressed="true"] { border-color: #0d2447; color: white; background: #0d2447; }
+    .search { flex: 1; min-width: 210px; }
+    .search input { display: block; width: 100%; border: 1px solid #afc3d6; background: #fff; color: #102443; border-radius: 12px; padding: 12px 15px; font: inherit; font-size: .95rem; outline: none; }
+    .search input:focus-visible { border-color: #0d5a9b; box-shadow: 0 0 0 3px #1877bd2e; }
+    .search input::placeholder { color: #657b93; }
+    .empty { background: #fff; border: 1px solid #d8e3ee; border-radius: 18px; padding: 24px; color: #52647e; }
+    .group { margin-top: 31px; }
+    .group-head { display: flex; align-items: center; gap: 11px; margin-bottom: 15px; }
+    .group-head h2 { margin: 0; font-size: 1.25rem; letter-spacing: -.025em; }
+    .group-head span { color: #54718f; font-size: .78rem; font-weight: 800; border: 1px solid #c8d6e4; background: #e5edf5; border-radius: 99px; padding: 5px 9px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
+    .card { background: white; border: 1px solid #d8e3ee; border-radius: 20px; padding: 22px; box-shadow: 0 7px 24px #24436d0d; min-width: 0; }
+    .card-top { display: flex; gap: 18px; align-items: flex-start; justify-content: space-between; padding-bottom: 18px; border-bottom: 1px solid #e5edf4; }
+    .word { min-width: 0; }
+    .number { color: #53799e; font-size: .78rem; font-weight: 800; letter-spacing: .08em; margin: 0 0 8px; }
+    .arabic { font-family: "Geeza Pro", "Noto Naskh Arabic", "Arial", sans-serif; direction: rtl; unicode-bidi: isolate; text-align: right; }
+    .term { color: #0c3260; font-size: clamp(1.55rem, 2.1vw, 1.95rem); line-height: 1.85; margin: 0; font-weight: 700; }
+    .meaning { display: inline-block; flex: none; max-width: 45%; border-radius: 10px; padding: 9px 11px; color: #8d5014; background: #fff2d9; font-size: .89rem; line-height: 1.3; font-weight: 750; }
+    .examples { list-style: none; padding: 0; margin: 0; }
+    .examples li { padding: 13px 0; border-bottom: 1px solid #edf1f5; }
+    .examples li:last-child { border-bottom: 0; padding-bottom: 0; }
+    .example-ar { margin: 0; color: #142b4a; font-size: 1.32rem; line-height: 1.9; overflow-wrap: anywhere; }
+    .example-es { margin: 3px 0 0; color: #52647e; font-size: .95rem; line-height: 1.5; }
+    .hidden-translation .example-es, .hidden-translation .meaning { visibility: hidden; }
+    .hidden-translation .meaning { min-height: 36px; }
+    .note { color: #52647e; font-size: .9rem; margin: 11px 0 0; }
+    @media (max-width: 850px) { .grid { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .shell { padding: 23px 16px 70px; } .top { display: block; margin-bottom: 20px; } .count { display: none; } .toolbar { align-items: stretch; margin-bottom: 22px; } .tabs { width: 100%; } .tabs button { flex: 1; padding-inline: 9px; } .search { width: 100%; } .study { width: 100%; } .card { padding: 18px; } .card-top { display: block; } .meaning { max-width: 100%; margin-top: 5px; } .term { font-size: 1.7rem; } .example-ar { font-size: 1.37rem; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="top">
+      <div>
+        <p class="eyebrow">Tu texto · árabe fuṣḥā</p>
+        <h1>Vocabulario para recordar</h1>
+        <p class="intro">100 palabras del texto, cada una con cuatro ejemplos en árabe y español.</p>
+      </div>
+      <div class="count" aria-label="100 palabras"><strong>100</strong><span>palabras</span></div>
+    </header>
+    <div class="toolbar">
+      <div class="tabs" role="group" aria-label="Filtrar palabras">
+        <button type="button" data-filter="all" aria-pressed="true">Todas</button>
+        <button type="button" data-filter="verb" aria-pressed="false">Verbos</button>
+        <button type="button" data-filter="noun" aria-pressed="false">Sustantivos</button>
+      </div>
+      <label class="search"><input id="search" type="search" placeholder="Buscar en árabe o español" aria-label="Buscar en árabe o español"></label>
+      <button class="study" id="study" type="button" aria-pressed="false">Ocultar traducciones</button>
+    </div>
+    <div id="content"></div>
+  </main>
+  <script>
+    const groups = [
+      { title: 'Rutina y aprendizaje', kind: 'verb', items: [
+        { ar: 'قَضَى / يَقْضِي', es: 'Pasar o dedicar tiempo', examples: [
+          ['أَقْضِي سَاعَةً فِي قِرَاءَةِ الْقُرْآنِ.', 'Paso una hora leyendo el Corán.'],
+          ['قَضَيْنَا الْعُطْلَةَ مَعَ الْأُسْرَةِ.', 'Pasamos las vacaciones con la familia.'],
+          ['لَا تَقْضِ وَقْتَكَ عَلَى الْهَاتِفِ.', 'No pases tu tiempo con el teléfono.'],
+          ['قَضَتْ أُخْتِي يَوْمَهَا فِي الدِّرَاسَةِ.', 'Mi hermana pasó el día estudiando.']
+        ] },
+        { ar: 'فَضَّلَ / يُفَضِّلُ', es: 'Preferir', examples: [
+          ['أُفَضِّلُ الْقَهْوَةَ عَلَى الشَّايِ.', 'Prefiero el café al té.'],
+          ['تُفَضِّلُ أُخْتِي الْمَشْيَ صَبَاحًا.', 'Mi hermana prefiere pasear por la mañana.'],
+          ['هَلْ تُفَضِّلُ أَنْ نَدْرُسَ الْيَوْمَ؟', '¿Prefieres que estudiemos hoy?'],
+          ['فَضَّلْنَا السَّفَرَ بِالْقِطَارِ.', 'Preferimos viajar en tren.']
+        ] },
+        { ar: 'اِهْتَمَّ / يَهْتَمُّ بِـ', es: 'Interesarse por · ocuparse de', examples: [
+          ['أَهْتَمُّ بِتَعَلُّمِ الْعَرَبِيَّةِ.', 'Me interesa aprender árabe.'],
+          ['يَهْتَمُّ الطَّبِيبُ بِصِحَّةِ مَرْضَاهُ.', 'El médico se ocupa de la salud de sus pacientes.'],
+          ['اِهْتَمَمْنَا بِتَنْظِيمِ الْبَيْتِ.', 'Nos ocupamos de organizar la casa.'],
+          ['هَلْ تَهْتَمُّ بِهَذَا الْمَوْضُوعِ؟', '¿Te interesa este tema?']
+        ] },
+        { ar: 'حَفِظَ / يَحْفَظُ', es: 'Memorizar', examples: [
+          ['أَحْفَظُ سُورَةً قَصِيرَةً.', 'Memorizo una sura corta.'],
+          ['حَفِظَ الطِّفْلُ رَقْمَ هَاتِفِ أُمِّهِ.', 'El niño memorizó el número de su madre.'],
+          ['اِحْفَظْ هَذِهِ الْكَلِمَةَ فِي جُمْلَةٍ.', 'Memoriza esta palabra dentro de una frase.'],
+          ['نَحْفَظُ الْعُنْوَانَ قَبْلَ السَّفَرِ.', 'Memorizamos la dirección antes de viajar.']
+        ] },
+        { ar: 'اِسْتَطَاعَ / يَسْتَطِيعُ', es: 'Poder · ser capaz de', examples: [
+          ['أَسْتَطِيعُ أَنْ أَفْهَمَ هَذَا الدَّرْسَ.', 'Puedo entender esta lección.'],
+          ['لَمْ يَسْتَطِعْ أَبِي السَّفَرَ أَمْسِ.', 'Mi padre no pudo viajar ayer.'],
+          ['هَلْ تَسْتَطِيعُ مُسَاعَدَتِي؟', '¿Puedes ayudarme?'],
+          ['اِسْتَطَاعَتْ أُخْتِي إِنْهَاءَ الْعَمَلِ.', 'Mi hermana pudo terminar el trabajo.']
+        ] }
+      ] },
+      { title: 'Trabajo, búsqueda y cambios', kind: 'verb', items: [
+        { ar: 'تَحَمَّلَ / يَتَحَمَّلُ', es: 'Asumir · soportar', examples: [
+          ['أَتَحَمَّلُ مَصَارِيفَ الْبَيْتِ.', 'Asumo los gastos de la casa.'],
+          ['تَحَمَّلَتْ أُمِّي الْمَشَقَّةَ بِصَبْرٍ.', 'Mi madre soportó la dificultad con paciencia.'],
+          ['لَا يَتَحَمَّلُ هَذَا الْجِسْرُ سَيَّارَاتٍ ثَقِيلَةً.', 'Este puente no soporta vehículos pesados.'],
+          ['نَتَحَمَّلُ الْمَسْؤُولِيَّةَ مَعًا.', 'Asumimos la responsabilidad juntos.']
+        ] },
+        { ar: 'بَحَثَ / يَبْحَثُ عَنْ', es: 'Buscar · investigar', examples: [
+          ['أَبْحَثُ عَنْ عَمَلٍ جَدِيدٍ.', 'Busco un trabajo nuevo.'],
+          ['بَحَثَتِ الطَّالِبَةُ عَنْ مَعْنَى الْكَلِمَةِ.', 'La estudiante buscó el significado de la palabra.'],
+          ['نَبْحَثُ عَنْ حَلٍّ لِلْمُشْكِلَةِ.', 'Buscamos una solución al problema.'],
+          ['هَلْ بَحَثْتَ عَنْ مِفْتَاحِكَ؟', '¿Has buscado tu llave?']
+        ] },
+        { ar: 'بَنَى / يَبْنِي', es: 'Construir', examples: [
+          ['أُرِيدُ أَنْ أَبْنِيَ أُسْرَةً مُسْتَقِرَّةً.', 'Quiero construir una familia estable.'],
+          ['بَنَى الْعُمَّالُ بَيْتًا جَدِيدًا.', 'Los trabajadores construyeron una casa nueva.'],
+          ['تَبْنِي الصَّرَاحَةُ الثِّقَةَ.', 'La sinceridad construye confianza.'],
+          ['نَبْنِي خُطَّتَنَا عَلَى الْوَاقِعِ.', 'Basamos nuestro plan en la realidad.']
+        ] },
+        { ar: 'اِسْتَقَرَّ / يَسْتَقِرُّ', es: 'Establecerse · estabilizarse', examples: [
+          ['اِسْتَقْرَرْتُ فِي الْمَدِينَةِ.', 'Me establecí en Medina.'],
+          ['اِسْتَقَرَّ السِّعْرُ بَعْدَ ارْتِفَاعِهِ.', 'El precio se estabilizó después de subir.'],
+          ['يُرِيدُ أَخِي أَنْ يَسْتَقِرَّ فِي عَمَلِهِ.', 'Mi hermano quiere asentarse en su trabajo.'],
+          ['اِسْتَقَرَّتْ أُسْرَتُهُ هُنَا بَعْدَ رِحْلَاتٍ كَثِيرَةٍ.', 'Su familia se estableció aquí después de muchos viajes.']
+        ] },
+        { ar: 'اِضْطُرَّ / يَضْطَرُّ إِلَى', es: 'Verse obligado a', examples: [
+          ['اِضْطُرِرْتُ إِلَى تَغْيِيرِ مَوْعِدِي.', 'Tuve que cambiar mi cita.'],
+          ['قَدْ نَضْطَرُّ إِلَى السَّفَرِ غَدًا.', 'Puede que tengamos que viajar mañana.'],
+          ['لَا أُرِيدُ أَنْ يَضْطَرَّ أَحَدٌ إِلَى الِانْتِظَارِ.', 'No quiero que nadie tenga que esperar.'],
+          ['اِضْطُرَّتِ الشَّرِكَةُ إِلَى تَأْجِيلِ الْمَشْرُوعِ.', 'La empresa tuvo que aplazar el proyecto.']
+        ] }
+      ] },
+      { title: 'Cuidado, cooperación y esfuerzo', kind: 'verb', items: [
+        { ar: 'رَعَى / يَرْعَى', es: 'Cuidar de', examples: [
+          ['أَرْعَى وَالِدَيَّ عِنْدَ حَاجَتِهِمَا إِلَيَّ.', 'Cuido de mis padres cuando me necesitan.'],
+          ['يَرْعَى الْأَبُ أَطْفَالَهُ فِي الْمَنْزِلِ.', 'El padre cuida de sus hijos en casa.'],
+          ['رَعَى الطَّبِيبُ الْمَرِيضَ بِاهْتِمَامٍ.', 'El médico atendió al paciente con esmero.'],
+          ['تَرْعَى الْمُعَلِّمَةُ الطُّلَّابَ الصِّغَارَ.', 'La maestra cuida de los alumnos pequeños.']
+        ] },
+        { ar: 'تَعَاوَنَ / يَتَعَاوَنُ', es: 'Cooperar', examples: [
+          ['نَتَعَاوَنُ فِي أَعْمَالِ الْبَيْتِ.', 'Cooperamos en las tareas de casa.'],
+          ['تَعَاوَنَ الطُّلَّابُ عَلَى حَلِّ الْمَسْأَلَةِ.', 'Los alumnos colaboraron para resolver el ejercicio.'],
+          ['تَتَعَاوَنُ الشَّرِكَتَانِ فِي هَذَا الْمَشْرُوعِ.', 'Las dos empresas cooperan en este proyecto.'],
+          ['تَعَاوَنْتُ مَعَ زَمِيلِي فِي الْعَمَلِ.', 'Colaboré con mi compañero en el trabajo.']
+        ] },
+        { ar: 'سَعَى / يَسْعَى', es: 'Esforzarse por · procurar', examples: [
+          ['أَسْعَى لِتَحْسِينِ لُغَتِي.', 'Me esfuerzo por mejorar mi idioma.'],
+          ['يَسْعَى الشَّابُّ إِلَى عَمَلٍ مُنَاسِبٍ.', 'El joven procura encontrar un trabajo adecuado.'],
+          ['سَعَيْنَا لِإِصْلَاحِ الْخِلَافِ.', 'Intentamos resolver el desacuerdo.'],
+          ['تَسْعَى إِلَى تَحْقِيقِ هَدَفِهَا.', 'Ella se esfuerza por lograr su objetivo.']
+        ] },
+        { ar: 'رَزَقَ / يَرْزُقُ', es: 'Conceder sustento o bienes', examples: [
+          ['رَزَقَ اللهُ صَدِيقِي طِفْلًا.', 'Allah concedió un hijo a mi amigo.'],
+          ['أَسْأَلُ اللهَ أَنْ يَرْزُقَنِي عِلْمًا نَافِعًا.', 'Pido a Allah que me conceda conocimiento beneficioso.'],
+          ['رَزَقَنَا اللهُ طَعَامًا طَيِّبًا.', 'Allah nos concedió buena comida.'],
+          ['يَرْزُقُ اللهُ مَنْ يَشَاءُ.', 'Allah provee a quien Él quiere.']
+        ] }
+      ] },
+      { title: 'Ideas esenciales', kind: 'noun', items: [
+        { ar: 'مَسْؤُولِيَّةٌ', es: 'Responsabilidad', examples: [
+          ['تَرْبِيَةُ الْأَطْفَالِ مَسْؤُولِيَّةٌ كَبِيرَةٌ.', 'Educar a los hijos es una gran responsabilidad.'],
+          ['هَذَا الْعَمَلُ مِنْ مَسْؤُولِيَّتِي.', 'Este trabajo es responsabilidad mía.'],
+          ['لِكُلِّ شَخْصٍ مَسْؤُولِيَّاتٌ فِي الْبَيْتِ.', 'Cada persona tiene responsabilidades en casa.'],
+          ['تَحَمَّلَتِ الْمُدِيرَةُ مَسْؤُولِيَّةَ الْقَرَارِ.', 'La directora asumió la responsabilidad de la decisión.']
+        ] },
+        { ar: 'نَفَقَةٌ', es: 'Manutención', examples: [
+          ['النَّفَقَةُ عَلَى الْأُسْرَةِ مَسْؤُولِيَّةٌ مُهِمَّةٌ.', 'Mantener económicamente a la familia es una responsabilidad importante.'],
+          ['يَحْتَاجُ الْأَبْنَاءُ إِلَى نَفَقَةٍ.', 'Los hijos necesitan manutención.'],
+          ['ادَّخَرَ مَالًا لِلنَّفَقَةِ عَلَى أُسْرَتِهِ.', 'Ahorró dinero para mantener a su familia.'],
+          ['يُرْسِلُ الْأَبُ النَّفَقَةَ كُلَّ شَهْرٍ.', 'El padre envía la manutención cada mes.']
+        ] },
+        { ar: 'اِسْتِقْرَارٌ', es: 'Estabilidad', examples: [
+          ['أَبْحَثُ عَنِ الِاسْتِقْرَارِ فِي حَيَاتِي.', 'Busco estabilidad en mi vida.'],
+          ['يُسَاعِدُ الْعَمَلُ الثَّابِتُ عَلَى الِاسْتِقْرَارِ.', 'Un trabajo estable ayuda a lograr estabilidad.'],
+          ['الِاسْتِقْرَارُ النَّفْسِيُّ مُهِمٌّ لِلْأَطْفَالِ.', 'La estabilidad emocional es importante para los niños.'],
+          ['يَحْتَاجُ الطَّالِبُ إِلَى الِاسْتِقْرَارِ لِيَدْرُسَ.', 'El estudiante necesita estabilidad para estudiar.']
+        ] },
+        { ar: 'تَرْبِيَةٌ', es: 'Crianza · educación', examples: [
+          ['تَرْبِيَةُ الْأَبْنَاءِ تَحْتَاجُ إِلَى صَبْرٍ.', 'Criar a los hijos requiere paciencia.'],
+          ['تَلَقَّيْتُ تَرْبِيَةً طَيِّبَةً مِنْ وَالِدَيَّ.', 'Recibí una buena educación de mis padres.'],
+          ['قَرَأْتُ كِتَابًا عَنْ تَرْبِيَةِ الْأَطْفَالِ.', 'Leí un libro sobre la crianza de los niños.'],
+          ['تُؤَثِّرُ التَّرْبِيَةُ فِي شَخْصِيَّةِ الطِّفْلِ.', 'La crianza influye en la personalidad del niño.']
+        ] },
+        { ar: 'صَرَاحَةٌ', es: 'Sinceridad · franqueza', examples: [
+          ['أُقَدِّرُ الصَّرَاحَةَ بَيْنَ الزَّوْجَيْنِ.', 'Valoro la sinceridad entre los esposos.'],
+          ['تَحَدَّثْتُ مَعَ صَدِيقِي بِصَرَاحَةٍ.', 'Hablé con mi amigo con franqueza.'],
+          ['الصَّرَاحَةُ تُسَاعِدُ عَلَى بِنَاءِ الثِّقَةِ.', 'La sinceridad ayuda a construir confianza.'],
+          ['الصَّرَاحَةُ خَيْرٌ مِنَ الصَّمْتِ أَحْيَانًا.', 'A veces la sinceridad es mejor que el silencio.']
+        ] },
+        { ar: 'تَوَافُقٌ', es: 'Compatibilidad · concordancia', examples: [
+          ['هُنَاكَ تَوَافُقٌ بَيْنَنَا فِي الْأَهْدَافِ.', 'Hay compatibilidad entre nosotros en los objetivos.'],
+          ['تَوَافُقُ الْآرَاءِ يُسَهِّلُ اتِّخَاذَ الْقَرَارِ.', 'La coincidencia de opiniones facilita tomar una decisión.'],
+          ['نَبْحَثُ عَنْ تَوَافُقٍ فِي طَرِيقَةِ الْحَيَاةِ.', 'Buscamos compatibilidad en la forma de vivir.'],
+          ['وَجَدْنَا تَوَافُقًا بَيْنَ الْخُطَّتَيْنِ.', 'Encontramos concordancia entre los dos planes.']
+        ] }
+      ] }
+    ];
+    /*__EXTRA_DATA__*/
+    groups.flatMap(group => group.items).forEach((item, index) => { item.number = index + 1; });
+    const content = document.getElementById('content');
+    const escapeHtml = s => s.replace(/[&<>\"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    let filter = 'all';
+    let search = '';
+    const normalize = s => s.normalize('NFD').replace(/[\u064b-\u065f\u0670]/g, '').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    function render() {
+      const shown = groups.filter(group => filter === 'all' || group.kind === filter).map(group => ({...group, items: group.items.filter(item => normalize(item.ar + ' ' + item.es).includes(search))})).filter(group => group.items.length);
+      content.innerHTML = shown.map(group => `
+        <section class="group"><div class="group-head"><h2>${escapeHtml(group.title)}</h2><span>${group.items.length} palabras</span></div>
+        <div class="grid">${group.items.map(item => `<article class="card">
+          <div class="card-top"><div class="word"><p class="number">PALABRA ${String(item.number).padStart(2,'0')}</p><h3 class="term arabic" lang="ar" dir="rtl">${escapeHtml(item.ar)}</h3></div><span class="meaning" lang="es">${escapeHtml(item.es)}</span></div>
+          <ol class="examples">${item.examples.map(([ar,es]) => `<li><p class="example-ar arabic" lang="ar" dir="rtl">${escapeHtml(ar)}</p><p class="example-es" lang="es" dir="ltr">${escapeHtml(es)}</p></li>`).join('')}</ol>
+        </article>`).join('')}</div></section>`).join('') || '<p class="empty">No hay palabras con esa búsqueda.</p>';
+    }
+    document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => {
+      filter = button.dataset.filter;
+      document.querySelectorAll('[data-filter]').forEach(b => b.setAttribute('aria-pressed', String(b === button)));
+      render();
+    }));
+    document.getElementById('search').addEventListener('input', e => { search = normalize(e.target.value.trim()); render(); });
+    document.getElementById('study').addEventListener('click', e => {
+      const active = document.body.classList.toggle('hidden-translation');
+      e.currentTarget.setAttribute('aria-pressed', String(active));
+      e.currentTarget.textContent = active ? 'Mostrar traducciones' : 'Ocultar traducciones';
+    });
+    render();
+  </script>
+</body>
+</html>
