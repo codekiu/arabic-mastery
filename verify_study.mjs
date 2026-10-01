@@ -1,0 +1,26 @@
+import fs from 'node:fs';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+const nodes=new Map();const node=()=>({textContent:'',value:'',hidden:false,disabled:false,setAttribute(){},focus(){},scrollIntoView(){},showModal(){},close(){}});
+const document={getElementById(id){if(!nodes.has(id))nodes.set(id,node());return nodes.get(id);},querySelector(){return node();},querySelectorAll(){return [];}};
+let saved;
+const sandbox={document,localStorage:{getItem(){return null;},setItem(k,v){saved=v;}},window:{addEventListener(){}},setTimeout,Date,crypto:{randomUUID:()=>String(Math.random())},console};
+const script=fs.readFileSync('dist/index.html','utf8').split('<script>')[1].split('</script>')[0];
+vm.createContext(sandbox);vm.runInContext(script,sandbox);
+function run(code){return vm.runInContext(code,sandbox);}
+assert.equal(run('createList("Viaje",["1","2"]).words.length'),2);
+assert.equal(JSON.parse(saved).lists.length,2);
+assert.equal(run('addWords(state.active,["2","3"]).count'),3);
+const snapshot=run('JSON.stringify(state)');
+assert.throws(()=>run('addWords(state.active,["1","999"])'));
+assert.equal(run('JSON.stringify(state)'),snapshot);
+assert.throws(()=>run('validateState({version:1,lists:[{id:"x",name:"x",words:["999"],results:[]}]})'));
+assert.throws(()=>run('validateState({version:1,lists:[{id:"x",name:"x",words:["1"],results:[{score:2,total:1,date:"2026-10-01"}]}]})'));
+assert.equal(run('validateState(JSON.parse(JSON.stringify(state))).lists[1].words.length'),3);
+const csv=run('csvFor([words[0],words[1]])');
+assert.equal(csv.split('\r\n').length,2);assert.equal((csv.match(/<hr>/g)||[]).length,8);
+assert.ok(csv.includes('dir=""rtl""'));
+run('startExam([words[0]]);session.score=1;advance()');
+assert.equal(run('activeList().results.at(-1).score'),1);
+assert.equal(run('session.done'),true);
+console.log('Verified: saved lists, atomic rejection of invalid IDs, backup validation, CSV with four examples, and stored exam scores.');

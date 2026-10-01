@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import {execFileSync} from 'node:child_process';
+import vm from 'node:vm';
+import assert from 'node:assert/strict';
+const page=fs.readFileSync('dist/index.html','utf8');
+const script=page.split('<script>')[1].split('</script>')[0];
+const data=vm.runInNewContext(script.split('const $ =')[0]+';groups');
+const words=data.flatMap(g=>g.items);
+assert.equal(words.length,300);assert.equal(new Set(words.map(w=>w.ar)).size,300);
+assert.ok(words.every(w=>w.examples.length===4&&w.examples.every(e=>e.length===2&&e.every(Boolean))));
+const old=execFileSync('git',['show','b01ddda06137c41e85837c64c61e3d799c703f9e:dist/index.html'],{encoding:'utf8'}).split('<script>')[1].split('</script>')[0];
+const original=vm.runInNewContext(old.split("const content =")[0]+';groups.flatMap(g=>g.items)');
+assert.equal(JSON.stringify(words.slice(0,100).map(w=>w.ar)),JSON.stringify(original.map(w=>w.ar)));
+console.log('Verified: 300 unique headwords, 1200 bilingual examples; original 100 identifiers preserved.');

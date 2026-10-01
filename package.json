@@ -1,0 +1,1 @@
+{"name":"vocabulario-arabe","version":"1.0.0","private":true,"scripts":{"build":"python3 build_vocab.py","desktop":"tauri dev","desktop:build":"tauri build --bundles app"},"devDependencies":{"@tauri-apps/cli":"^2"}}

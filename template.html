@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0d2447">
-  <meta name="description" content="100 palabras del texto árabe con cuatro ejemplos en árabe y español para estudiar y repasar.">
-  <title>Vocabulario árabe · 100 palabras del texto</title>
+  <meta name="description" content="300 palabras del texto árabe con cuatro ejemplos en árabe y español para estudiar y repasar.">
+  <title>Vocabulario árabe · 300 palabras del texto</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d2447'/%3E%3Cpath d='M17 20h30v5H17zm0 10h22v5H17zm0 10h30v5H17z' fill='%23f6c96d'/%3E%3C/svg%3E">
   <style>
     :root { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #102443; background: #edf3f8; }
@@ -54,6 +54,7 @@
     .note { color: #52647e; font-size: .9rem; margin: 11px 0 0; }
     @media (max-width: 850px) { .grid { grid-template-columns: 1fr; } }
     @media (max-width: 600px) { .shell { padding: 23px 16px 70px; } .top { display: block; margin-bottom: 20px; } .count { display: none; } .toolbar { align-items: stretch; margin-bottom: 22px; } .tabs { width: 100%; } .tabs button { flex: 1; padding-inline: 9px; } .search { width: 100%; } .study { width: 100%; } .card { padding: 18px; } .card-top { display: block; } .meaning { max-width: 100%; margin-top: 5px; } .term { font-size: 1.7rem; } .example-ar { font-size: 1.37rem; } }
+    /*__STUDY_CSS__*/
   </style>
 </head>
 <body>
@@ -62,19 +63,33 @@
       <div>
         <p class="eyebrow">Tu texto · árabe fuṣḥā</p>
         <h1>Vocabulario para recordar</h1>
-        <p class="intro">100 palabras del texto, cada una con cuatro ejemplos en árabe y español.</p>
+        <p class="intro">300 palabras del texto y sus familias de palabras, cada una con cuatro ejemplos en árabe y español.</p>
       </div>
-      <div class="count" aria-label="100 palabras"><strong>100</strong><span>palabras</span></div>
+      <div class="count" aria-label="300 palabras"><strong>300</strong><span>palabras</span></div>
     </header>
-    <div class="toolbar">
+    <nav class="nav" aria-label="Secciones"><button id="catalog-nav" aria-pressed="true">Vocabulario</button><button id="lists-nav" aria-pressed="false">Mis listas</button></nav>
+    <section class="workspace" aria-label="Mi estudio">
+      <div class="workspace-top"><label class="list-label">Lista de estudio <select id="list-select" aria-label="Lista de estudio"></select></label><span id="list-stat" class="list-stat"></span></div>
+      <p class="notice" id="list-help">Elige una lista y pulsa «Añadir» en las palabras que quieras estudiar.</p>
+      <div class="list-editor"><input id="list-name" maxlength="60" placeholder="Nombre de una nueva lista" aria-label="Nombre de la lista"><button class="action" id="create-list">Crear lista</button><button class="action" id="rename-list">Renombrar</button><button class="action danger" id="delete-list">Eliminar lista</button></div>
+      <div class="actions"><button class="action primary" id="flash-start">Flashcards</button><button class="action primary" id="exam-start">Hacer examen</button><button class="action" id="export-csv">Exportar para Anki (CSV)</button><button class="action" id="backup">Guardar copia de mis listas</button><button class="action" id="restore">Importar copia</button><input type="file" id="backup-file" accept=".json,application/json" hidden></div>
+      <p class="notice storage-note">Tus listas y resultados se guardan en este navegador o en esta app. Usa una copia para trasladarlos entre dispositivos o entre la web y la app. El CSV contiene árabe en el anverso y significado + 4 ejemplos en el reverso.</p>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+      <div id="history" class="history" hidden></div>
+    </section>
+    <dialog id="file-panel" class="file-panel"><h2 id="file-title">Exportar</h2><p>Puedes descargar el archivo o copiar su contenido si tu navegador no permite la descarga.</p><textarea id="file-text" aria-label="Contenido del archivo" readonly></textarea><div class="actions"><button class="action primary" id="file-save">Descargar archivo</button><button class="action" id="file-copy">Copiar contenido</button><button class="action" id="file-close">Cerrar</button></div><p id="file-status" role="status"></p></dialog>
+    <section id="session" class="session" aria-label="Repaso" hidden></section>
+    <div id="catalog-toolbar" class="toolbar">
       <div class="tabs" role="group" aria-label="Filtrar palabras">
         <button type="button" data-filter="all" aria-pressed="true">Todas</button>
         <button type="button" data-filter="verb" aria-pressed="false">Verbos</button>
         <button type="button" data-filter="noun" aria-pressed="false">Sustantivos</button>
+        <button type="button" data-filter="adjective" aria-pressed="false">Adjetivos</button>
       </div>
       <label class="search"><input id="search" type="search" placeholder="Buscar en árabe o español" aria-label="Buscar en árabe o español"></label>
       <button class="study" id="study" type="button" aria-pressed="false">Ocultar traducciones</button>
     </div>
+    <p id="catalog-summary" class="catalog-summary"></p>
     <div id="content"></div>
   </main>
   <script>
@@ -210,32 +225,7 @@
     ];
     /*__EXTRA_DATA__*/
     groups.flatMap(group => group.items).forEach((item, index) => { item.number = index + 1; });
-    const content = document.getElementById('content');
-    const escapeHtml = s => s.replace(/[&<>\"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-    let filter = 'all';
-    let search = '';
-    const normalize = s => s.normalize('NFD').replace(/[\u064b-\u065f\u0670]/g, '').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-    function render() {
-      const shown = groups.filter(group => filter === 'all' || group.kind === filter).map(group => ({...group, items: group.items.filter(item => normalize(item.ar + ' ' + item.es).includes(search))})).filter(group => group.items.length);
-      content.innerHTML = shown.map(group => `
-        <section class="group"><div class="group-head"><h2>${escapeHtml(group.title)}</h2><span>${group.items.length} palabras</span></div>
-        <div class="grid">${group.items.map(item => `<article class="card">
-          <div class="card-top"><div class="word"><p class="number">PALABRA ${String(item.number).padStart(2,'0')}</p><h3 class="term arabic" lang="ar" dir="rtl">${escapeHtml(item.ar)}</h3></div><span class="meaning" lang="es">${escapeHtml(item.es)}</span></div>
-          <ol class="examples">${item.examples.map(([ar,es]) => `<li><p class="example-ar arabic" lang="ar" dir="rtl">${escapeHtml(ar)}</p><p class="example-es" lang="es" dir="ltr">${escapeHtml(es)}</p></li>`).join('')}</ol>
-        </article>`).join('')}</div></section>`).join('') || '<p class="empty">No hay palabras con esa búsqueda.</p>';
-    }
-    document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => {
-      filter = button.dataset.filter;
-      document.querySelectorAll('[data-filter]').forEach(b => b.setAttribute('aria-pressed', String(b === button)));
-      render();
-    }));
-    document.getElementById('search').addEventListener('input', e => { search = normalize(e.target.value.trim()); render(); });
-    document.getElementById('study').addEventListener('click', e => {
-      const active = document.body.classList.toggle('hidden-translation');
-      e.currentTarget.setAttribute('aria-pressed', String(active));
-      e.currentTarget.textContent = active ? 'Mostrar traducciones' : 'Ocultar traducciones';
-    });
-    render();
+    /*__STUDY_JS__*/
   </script>
 </body>
 </html>
