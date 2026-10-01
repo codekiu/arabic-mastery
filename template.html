@@ -5,93 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0d2447">
   <meta name="description" content="300 palabras del texto árabe con cuatro ejemplos en árabe y español para estudiar y repasar.">
-  <title>Vocabulario árabe · 300 palabras del texto</title>
+  <title>Arabic Mastery · Aprende a tu ritmo</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d2447'/%3E%3Cpath d='M17 20h30v5H17zm0 10h22v5H17zm0 10h30v5H17z' fill='%23f6c96d'/%3E%3C/svg%3E">
-  <style>
-    :root { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #102443; background: #edf3f8; }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; }
-    button { font: inherit; cursor: pointer; }
-    .shell { max-width: 1220px; padding: 28px 28px 90px; margin: auto; }
-    .top { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 26px; }
-    .eyebrow { color: #47729e; font-size: .83rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; margin: 0 0 8px; }
-    h1 { font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.05; letter-spacing: -.045em; margin: 0; }
-    .intro { margin: 12px 0 0; color: #52647e; line-height: 1.55; font-size: 1rem; max-width: 560px; }
-    .count { flex: none; background: #0d2447; color: white; border-radius: 22px; padding: 16px 20px; min-width: 122px; text-align: center; box-shadow: 0 12px 26px #0d244720; }
-    .count strong { display: block; font-size: 2rem; line-height: 1; }
-    .count span { display: block; margin-top: 4px; color: #b9cbe2; font-size: .8rem; }
-    .toolbar { display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 30px; }
-    .tabs { display: inline-flex; flex-wrap: wrap; gap: 5px; border-radius: 15px; background: #dae5ef; padding: 5px; }
-    .tabs button { border: 0; border-radius: 11px; background: transparent; color: #52647e; padding: 10px 16px; font-size: .9rem; font-weight: 700; }
-    .tabs button[aria-pressed="true"] { color: #0d2447; background: white; box-shadow: 0 2px 8px #0d244719; }
-    .study { border: 1px solid #afc3d6; color: #0d2447; background: #fff; border-radius: 12px; padding: 12px 17px; font-weight: 700; }
-    .study[aria-pressed="true"] { border-color: #0d2447; color: white; background: #0d2447; }
-    .search { flex: 1; min-width: 210px; }
-    .search input { display: block; width: 100%; border: 1px solid #afc3d6; background: #fff; color: #102443; border-radius: 12px; padding: 12px 15px; font: inherit; font-size: .95rem; outline: none; }
-    .search input:focus-visible { border-color: #0d5a9b; box-shadow: 0 0 0 3px #1877bd2e; }
-    .search input::placeholder { color: #657b93; }
-    .empty { background: #fff; border: 1px solid #d8e3ee; border-radius: 18px; padding: 24px; color: #52647e; }
-    .group { margin-top: 31px; }
-    .group-head { display: flex; align-items: center; gap: 11px; margin-bottom: 15px; }
-    .group-head h2 { margin: 0; font-size: 1.25rem; letter-spacing: -.025em; }
-    .group-head span { color: #54718f; font-size: .78rem; font-weight: 800; border: 1px solid #c8d6e4; background: #e5edf5; border-radius: 99px; padding: 5px 9px; }
-    .grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
-    .card { background: white; border: 1px solid #d8e3ee; border-radius: 20px; padding: 22px; box-shadow: 0 7px 24px #24436d0d; min-width: 0; }
-    .card-top { display: flex; gap: 18px; align-items: flex-start; justify-content: space-between; padding-bottom: 18px; border-bottom: 1px solid #e5edf4; }
-    .word { min-width: 0; }
-    .number { color: #53799e; font-size: .78rem; font-weight: 800; letter-spacing: .08em; margin: 0 0 8px; }
-    .arabic { font-family: "Geeza Pro", "Noto Naskh Arabic", "Arial", sans-serif; direction: rtl; unicode-bidi: isolate; text-align: right; }
-    .term { color: #0c3260; font-size: clamp(1.55rem, 2.1vw, 1.95rem); line-height: 1.85; margin: 0; font-weight: 700; }
-    .meaning { display: inline-block; flex: none; max-width: 45%; border-radius: 10px; padding: 9px 11px; color: #8d5014; background: #fff2d9; font-size: .89rem; line-height: 1.3; font-weight: 750; }
-    .examples { list-style: none; padding: 0; margin: 0; }
-    .examples li { padding: 13px 0; border-bottom: 1px solid #edf1f5; }
-    .examples li:last-child { border-bottom: 0; padding-bottom: 0; }
-    .example-ar { margin: 0; color: #142b4a; font-size: 1.32rem; line-height: 1.9; overflow-wrap: anywhere; }
-    .example-es { margin: 3px 0 0; color: #52647e; font-size: .95rem; line-height: 1.5; }
-    .hidden-translation .example-es, .hidden-translation .meaning { visibility: hidden; }
-    .hidden-translation .meaning { min-height: 36px; }
-    .note { color: #52647e; font-size: .9rem; margin: 11px 0 0; }
-    @media (max-width: 850px) { .grid { grid-template-columns: 1fr; } }
-    @media (max-width: 600px) { .shell { padding: 23px 16px 70px; } .top { display: block; margin-bottom: 20px; } .count { display: none; } .toolbar { align-items: stretch; margin-bottom: 22px; } .tabs { width: 100%; } .tabs button { flex: 1; padding-inline: 9px; } .search { width: 100%; } .study { width: 100%; } .card { padding: 18px; } .card-top { display: block; } .meaning { max-width: 100%; margin-top: 5px; } .term { font-size: 1.7rem; } .example-ar { font-size: 1.37rem; } }
-    /*__STUDY_CSS__*/
-  </style>
+  <style>/*__STUDY_CSS__*/</style>
 </head>
 <body>
-  <main class="shell">
-    <header class="top">
-      <div>
-        <p class="eyebrow">Tu texto · árabe fuṣḥā</p>
-        <h1>Vocabulario para recordar</h1>
-        <p class="intro">300 palabras del texto y sus familias de palabras, cada una con cuatro ejemplos en árabe y español.</p>
-      </div>
-      <div class="count" aria-label="300 palabras"><strong>300</strong><span>palabras</span></div>
-    </header>
-    <nav class="nav" aria-label="Secciones"><button id="catalog-nav" aria-pressed="true">Vocabulario</button><button id="lists-nav" aria-pressed="false">Mis listas</button></nav>
-    <section class="workspace" aria-label="Mi estudio">
-      <div class="workspace-top"><label class="list-label">Lista de estudio <select id="list-select" aria-label="Lista de estudio"></select></label><span id="list-stat" class="list-stat"></span></div>
-      <p class="notice" id="list-help">Elige una lista y pulsa «Añadir» en las palabras que quieras estudiar.</p>
-      <div class="list-editor"><input id="list-name" maxlength="60" placeholder="Nombre de una nueva lista" aria-label="Nombre de la lista"><button class="action" id="create-list">Crear lista</button><button class="action" id="rename-list">Renombrar</button><button class="action danger" id="delete-list">Eliminar lista</button></div>
-      <div class="actions"><button class="action primary" id="flash-start">Flashcards</button><button class="action primary" id="exam-start">Hacer examen</button><button class="action" id="export-csv">Exportar para Anki (CSV)</button><button class="action" id="backup">Guardar copia de mis listas</button><button class="action" id="restore">Importar copia</button><input type="file" id="backup-file" accept=".json,application/json" hidden></div>
-      <p class="notice storage-note">Tus listas y resultados se guardan en este navegador o en esta app. Usa una copia para trasladarlos entre dispositivos o entre la web y la app. El CSV contiene árabe en el anverso y significado + 4 ejemplos en el reverso.</p>
+  <a class="skip" href="#main">Saltar al contenido</a>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" id="brand-home"><span class="brand-mark" aria-hidden="true">ع</span><span>Arabic Mastery<small>ÁRABE · PASO A PASO</small></span></a>
+      <p class="nav-caption">TU APRENDIZAJE</p>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <button data-page="home" aria-current="page"><span aria-hidden="true">⌂</span>Inicio</button>
+        <button id="catalog-nav" data-page="catalog"><span aria-hidden="true">▤</span>Biblioteca</button>
+        <button id="lists-nav" data-page="lists"><span aria-hidden="true">▱</span>Mis listas</button>
+        <button data-page="progress"><span aria-hidden="true">▥</span>Progreso</button>
+        <button class="mobile-settings" data-page="settings"><span aria-hidden="true">⚙</span>Ajustes</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="sidebar-note"><strong>300 palabras. Tu ritmo.</strong><p>Aprende en contexto, recuerda y vuelve a practicar.</p></div><button class="settings-nav" data-page="settings"><span aria-hidden="true">⚙</span>Ajustes y copias</button><span class="local-label"><i></i> Tu estudio se guarda aquí</span></div>
+    </aside>
+    <main id="main" class="main">
+      <header class="topbar"><span id="breadcrumb">Tu espacio de aprendizaje</span><span class="course-tag">العَرَبِيَّةُ <span>Árabe fuṣḥā</span></span></header>
+      <div class="page-header"><div><p id="page-kicker" class="eyebrow">UN POCO CADA DÍA</p><h1 id="page-title">Tu próximo paso.</h1><p id="page-description" class="muted">Haz espacio para unas palabras nuevas.</p></div><span id="today-date" class="date"></span></div>
+      <section id="dashboard"></section>
+      <section id="workspace" class="workspace" hidden></section>
+      <section id="progress-page" hidden></section>
+      <section id="settings-page" hidden></section>
+      <section id="session" class="session" aria-label="Sesión de estudio" hidden></section>
+      <section id="catalog-area" hidden>
+        <div id="catalog-toolbar" class="toolbar">
+          <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Buscar una palabra en árabe o español" aria-label="Buscar en árabe o español"></label>
+          <select id="topic-filter" aria-label="Filtrar por tema"><option value="all">Todos los temas</option></select>
+        </div>
+        <div class="collection-controls"><div class="tabs" role="group" aria-label="Filtrar por tipo"><button data-filter="all" aria-pressed="true">Todas</button><button data-filter="verb" aria-pressed="false">Verbos</button><button data-filter="noun" aria-pressed="false">Sustantivos</button><button data-filter="adjective" aria-pressed="false">Adjetivos</button></div><label class="list-target">Añadir a <select id="list-select" aria-label="Lista de estudio"></select></label></div>
+        <div class="collection-meta"><p id="catalog-summary"></p><button class="text-button" id="study" aria-pressed="false">Ocultar significados</button></div>
+        <div id="content"></div>
+      </section>
       <p id="status" class="status" role="status" aria-live="polite"></p>
-      <div id="history" class="history" hidden></div>
-    </section>
-    <dialog id="file-panel" class="file-panel"><h2 id="file-title">Exportar</h2><p>Puedes descargar el archivo o copiar su contenido si tu navegador no permite la descarga.</p><textarea id="file-text" aria-label="Contenido del archivo" readonly></textarea><div class="actions"><button class="action primary" id="file-save">Descargar archivo</button><button class="action" id="file-copy">Copiar contenido</button><button class="action" id="file-close">Cerrar</button></div><p id="file-status" role="status"></p></dialog>
-    <section id="session" class="session" aria-label="Repaso" hidden></section>
-    <div id="catalog-toolbar" class="toolbar">
-      <div class="tabs" role="group" aria-label="Filtrar palabras">
-        <button type="button" data-filter="all" aria-pressed="true">Todas</button>
-        <button type="button" data-filter="verb" aria-pressed="false">Verbos</button>
-        <button type="button" data-filter="noun" aria-pressed="false">Sustantivos</button>
-        <button type="button" data-filter="adjective" aria-pressed="false">Adjetivos</button>
-      </div>
-      <label class="search"><input id="search" type="search" placeholder="Buscar en árabe o español" aria-label="Buscar en árabe o español"></label>
-      <button class="study" id="study" type="button" aria-pressed="false">Ocultar traducciones</button>
-    </div>
-    <p id="catalog-summary" class="catalog-summary"></p>
-    <div id="content"></div>
-  </main>
+    </main>
+  </div>
+  <dialog id="word-dialog" class="word-dialog" aria-labelledby="word-title"><div id="word-detail"></div></dialog>
+  <dialog id="list-dialog" class="list-dialog" aria-labelledby="list-dialog-title"><form id="list-form"><div class="dialog-head"><h2 id="list-dialog-title">Crear lista</h2><button type="button" class="icon-button" id="list-dialog-close" aria-label="Cerrar">×</button></div><p class="muted">Agrupa palabras por tema, conversación o dificultad.</p><label class="field">Nombre de la lista<input id="list-name" maxlength="60" placeholder="Por ejemplo: Mi rutina diaria" required></label><p id="list-form-error" class="error" role="alert"></p><button class="button primary" type="submit">Guardar lista</button></form></dialog>
+  <dialog id="file-panel" class="file-panel" aria-labelledby="file-title"><div class="dialog-head"><h2 id="file-title">Exportar</h2><button class="icon-button" id="file-close" aria-label="Cerrar">×</button></div><p class="muted">Descarga el archivo o copia su contenido.</p><textarea id="file-text" aria-label="Contenido del archivo" readonly></textarea><div class="actions"><button class="button primary" id="file-save">Descargar archivo</button><button class="button" id="file-copy">Copiar contenido</button></div><p id="file-status" role="status"></p></dialog>
+  <input type="file" id="backup-file" accept=".json,application/json" hidden>
   <script>
     const groups = [
       { title: 'Rutina y aprendizaje', kind: 'verb', items: [

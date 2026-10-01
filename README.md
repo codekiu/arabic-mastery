@@ -1,15 +1,19 @@
-# Vocabulario árabe
+# Arabic Mastery
 
 300 palabras con 4 ejemplos bilingües cada una. Funciona como web, HTML sin conexión y aplicación de escritorio con Tauri 2.
 
 ## Estudiar
 
 1. En **Mis listas**, crea una lista con un nombre.
-2. En **Vocabulario**, selecciona la lista y añade palabras.
-3. Usa **Flashcards** para recordar el significado y marcar lo que necesitas repetir.
+2. En **Biblioteca**, selecciona la lista y añade palabras.
+3. Desde la lista, elige una sesión de 10, 20 o todas las palabras y la dirección de las flashcards. Pulsa **Estudiar**, intenta recordar antes de mostrar la respuesta y elige **Repetir**, **Difícil** o **La recuerdo**.
 4. Usa **Hacer examen** para responder preguntas de opción múltiple y repasar los fallos. Los últimos resultados quedan guardados en la lista.
 5. **Exportar para Anki (CSV)** produce dos columnas: anverso y reverso. Al importar, selecciona coma como separador y permite HTML. No hay fila de encabezados. Cada reverso incluye los cuatro ejemplos.
-6. **Guardar copia de mis listas** guarda un JSON. **Importar copia** añade esas listas sin borrar las existentes. La web también permite copiar el contenido cuando el navegador no puede descargar archivos.
+6. En **Ajustes**, **Guardar copia** guarda un JSON con listas, resultados y repasos. **Elegir archivo** añade esas listas sin borrar las existentes. La web también permite copiar el contenido cuando el navegador no puede descargar archivos.
+
+**Inicio** ofrece acceso a las listas y repasos pendientes. **Progreso** muestra próximos repasos y resultados reales. La interfaz tiene navegación persistente, fichas compactas y cuatro ejemplos por palabra en una ventana de detalle. No incluye puntos, premios ni rachas.
+
+Los intervalos de repaso son una heurística de 1, 3, 7, 14 y 30 días; no un algoritmo adaptativo validado. Consulta [la investigación y decisiones de diseño](docs/diseno-ux.md).
 
 Las listas se guardan localmente. No se sincronizan automáticamente entre la app, la web ni dispositivos. Guarda una copia para trasladarlas o conservar un respaldo.
 

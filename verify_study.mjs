@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
-const nodes=new Map();const node=()=>({textContent:'',value:'',hidden:false,disabled:false,setAttribute(){},focus(){},scrollIntoView(){},showModal(){},close(){}});
-const document={getElementById(id){if(!nodes.has(id))nodes.set(id,node());return nodes.get(id);},querySelector(){return node();},querySelectorAll(){return [];}};
+const nodes=new Map();const node=()=>({textContent:'',value:'',hidden:false,disabled:false,setAttribute(){},removeAttribute(){},addEventListener(){},querySelectorAll(){return [];},parentElement:{parentElement:{}},focus(){},scrollIntoView(){},showModal(){},close(){}});
+const document={addEventListener(){},getElementById(id){if(!nodes.has(id))nodes.set(id,node());return nodes.get(id);},querySelector(){return node();},querySelectorAll(){return [];}};
 let saved;
 const sandbox={document,localStorage:{getItem(){return null;},setItem(k,v){saved=v;}},window:{addEventListener(){}},setTimeout,Date,crypto:{randomUUID:()=>String(Math.random())},console};
 const script=fs.readFileSync('dist/index.html','utf8').split('<script>')[1].split('</script>')[0];
@@ -23,4 +23,22 @@ assert.ok(csv.includes('dir=""rtl""'));
 run('startExam([words[0]]);session.score=1;advance()');
 assert.equal(run('activeList().results.at(-1).score'),1);
 assert.equal(run('session.done'),true);
-console.log('Verified: saved lists, atomic rejection of invalid IDs, backup validation, CSV with four examples, and stored exam scores.');
+// Backward-compatible migration and honest review scheduling.
+assert.equal(run('Object.keys(validateState({version:1,active:"old",lists:[{id:"old",name:"Anterior",words:["1"],results:[]}]}).reviews).length'),0);
+run('state.reviews={}');
+const fixed=Date.parse('2026-10-01T09:00:00Z');
+for(const days of [1,3,7,14,30,30]){
+  assert.equal(run(`rateWord("1","known",${fixed})`),days);
+  assert.equal(run('Date.parse(state.reviews["1"].due)'),fixed+days*86400000);
+}
+assert.equal(run(`rateWord("1","hard",${fixed})`),1);
+assert.equal(run('state.reviews["1"].level'),2);
+assert.equal(run(`rateWord("1","again",${fixed})`),1);
+assert.equal(run('state.reviews["1"].level'),0);
+const beforeImport=run('JSON.stringify(state)');
+assert.throws(()=>run('importBackup({version:1,lists:[{id:"bad",name:"Bad",words:["1"],results:[]}],reviews:{"999":{level:1,due:"2026-10-01",last:"2026-10-01"}}})'));
+assert.equal(run('JSON.stringify(state)'),beforeImport);
+run('importBackup({version:1,lists:[{id:"old",name:"Anterior",words:["1"],results:[]}],reviews:{"1":{level:3,due:"2026-10-10",last:"2026-10-02"}}})');
+assert.equal(run('state.reviews["1"].level'),3);
+assert.equal(run('state.lists.at(-1).name'),'Anterior (copia)');
+console.log('Verified: migration, review scheduling and atomic backup import; saved lists, atomic rejection of invalid IDs, backup validation, CSV with four examples, and stored exam scores.');
