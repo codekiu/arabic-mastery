@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0d2447">
   <meta name="description" content="500 palabras en árabe fuṣḥā con cuatro ejemplos en árabe y español para estudiar y repasar.">
-  <title>Arabic Mastery · Aprende a tu ritmo</title>
+  <title>Arabic Mastery</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d2447'/%3E%3Cpath d='M17 20h30v5H17zm0 10h22v5H17zm0 10h30v5H17z' fill='%23f6c96d'/%3E%3C/svg%3E">
   <style>/*__STUDY_CSS__*/</style>
 </head>
@@ -13,8 +13,7 @@
   <a class="skip" href="#main">Saltar al contenido</a>
   <div class="app-shell">
     <aside class="sidebar">
-      <a class="brand" href="#" id="brand-home"><span class="brand-mark" aria-hidden="true">ع</span><span>Arabic Mastery<small>ÁRABE · PASO A PASO</small></span></a>
-      <p class="nav-caption">TU APRENDIZAJE</p>
+      <a class="brand" href="#" id="brand-home"><span class="brand-mark" aria-hidden="true">ع</span><span>Arabic Mastery</span></a>
       <nav class="main-nav" aria-label="Navegación principal">
         <button data-page="home" aria-current="page"><span aria-hidden="true">⌂</span>Inicio</button>
         <button id="catalog-nav" data-page="catalog"><span aria-hidden="true">▤</span>Biblioteca</button>
@@ -22,11 +21,10 @@
         <button data-page="progress"><span aria-hidden="true">▥</span>Progreso</button>
         <button class="mobile-settings" data-page="settings"><span aria-hidden="true">⚙</span>Ajustes</button>
       </nav>
-      <div class="sidebar-bottom"><div class="sidebar-note"><strong>500 palabras. Tu ritmo.</strong><p>Aprende en contexto, recuerda y vuelve a practicar.</p></div><button class="settings-nav" data-page="settings"><span aria-hidden="true">⚙</span>Ajustes y copias</button><span class="local-label"><i></i> Tu estudio se guarda aquí</span></div>
+      <div class="sidebar-bottom"><button class="settings-nav" data-page="settings"><span aria-hidden="true">⚙</span>Ajustes</button><button class="icon-button theme-toggle" id="theme-toggle" aria-pressed="false" aria-label="Modo oscuro" title="Modo oscuro"></button></div>
     </aside>
     <main id="main" class="main">
-      <header class="topbar"><span id="breadcrumb">Tu espacio de aprendizaje</span><div class="topbar-actions"><span class="course-tag">العَرَبِيَّةُ <span>Árabe fuṣḥā</span></span><button class="button theme-toggle" id="theme-toggle" aria-pressed="false">Modo oscuro</button></div></header>
-      <div class="page-header"><div><p id="page-kicker" class="eyebrow">UN POCO CADA DÍA</p><h1 id="page-title">Tu próximo paso.</h1><p id="page-description" class="muted">Haz espacio para unas palabras nuevas.</p></div><span id="today-date" class="date"></span></div>
+      <div class="page-header"><h1 id="page-title">Inicio</h1><div id="page-actions" class="page-actions"></div></div>
       <section id="dashboard"></section>
       <section id="workspace" class="workspace" hidden></section>
       <section id="progress-page" hidden></section>
@@ -34,11 +32,12 @@
       <section id="session" class="session" aria-label="Sesión de estudio" hidden></section>
       <section id="catalog-area" hidden>
         <div id="catalog-toolbar" class="toolbar">
-          <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Buscar una palabra en árabe o español" aria-label="Buscar en árabe o español"></label>
+          <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Buscar en árabe o español" aria-label="Buscar en árabe o español"></label>
           <select id="topic-filter" aria-label="Filtrar por tema"><option value="all">Todos los temas</option></select>
+          <div class="tabs" role="group" aria-label="Filtrar por tipo"><button data-filter="all" aria-pressed="true">Todas</button><button data-filter="verb" aria-pressed="false">Verbos</button><button data-filter="noun" aria-pressed="false">Sustantivos</button><button data-filter="adjective" aria-pressed="false">Adjetivos</button></div>
         </div>
-        <div class="collection-controls"><div class="tabs" role="group" aria-label="Filtrar por tipo"><button data-filter="all" aria-pressed="true">Todas</button><button data-filter="verb" aria-pressed="false">Verbos</button><button data-filter="noun" aria-pressed="false">Sustantivos</button><button data-filter="adjective" aria-pressed="false">Adjetivos</button></div><label class="list-target">Añadir a <select id="list-select" aria-label="Lista de estudio"></select></label></div>
-        <div class="collection-meta"><p id="catalog-summary"></p><div class="view-controls"><button class="button" id="examples-toggle" aria-pressed="false" aria-controls="content">Mostrar ejemplos</button><button class="text-button" id="study" aria-pressed="false">Ocultar significados</button></div></div>
+        <div class="target-bar"><label class="list-target">Añadiendo a <select id="list-select" aria-label="Lista a la que se añaden las palabras"></select><span id="target-count"></span></label><div class="view-controls" role="group" aria-label="Vista"><button class="button" id="examples-toggle" aria-pressed="false" aria-controls="content">Mostrar ejemplos</button><button class="button" id="study" aria-pressed="false">Ocultar significados</button></div></div>
+        <p id="catalog-summary" class="catalog-summary"></p>
         <div id="content"></div>
       </section>
       <p id="status" class="status" role="status" aria-live="polite"></p>

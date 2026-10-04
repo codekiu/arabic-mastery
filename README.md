@@ -5,15 +5,15 @@
 ## Estudiar
 
 1. En **Mis listas**, crea una lista con un nombre.
-2. En **Biblioteca**, selecciona la lista y añade palabras.
+2. En **Biblioteca**, elige en la barra «Añadiendo a» la lista y añade palabras una a una o un tema completo con «Añadir las N».
 3. Desde la lista, elige una sesión de 10, 20 o todas las palabras y la dirección de las flashcards. Pulsa **Estudiar**, intenta recordar antes de mostrar la respuesta y elige **Repetir**, **Difícil** o **La recuerdo**.
 4. Usa **Hacer examen** para responder preguntas de opción múltiple y repasar los fallos. Los últimos resultados quedan guardados en la lista.
 5. **Exportar para Anki (CSV)** produce dos columnas: anverso y reverso. Al importar, selecciona coma como separador y permite HTML. No hay fila de encabezados. Cada reverso incluye los cuatro ejemplos.
-6. En **Ajustes** o desde **Gestionar esta lista**, guarda una copia JSON con todas las listas, resultados de exámenes y fechas de repaso. Elige dónde guardarla en la app de escritorio o en navegadores compatibles; en los demás navegadores se descarga el archivo. Al importar una copia, puedes restaurar todos los datos de ese archivo o añadirlos a los actuales. Una copia antigua de la aplicación sigue siendo compatible.
+6. En **Ajustes**, guarda una copia JSON con todas las listas, resultados de exámenes y fechas de repaso. Elige dónde guardarla en la app de escritorio o en navegadores compatibles; en los demás navegadores se descarga el archivo. Al importar una copia, puedes restaurar todos los datos de ese archivo o añadirlos a los actuales. Una copia antigua de la aplicación sigue siendo compatible.
 
-**Inicio** ofrece acceso a las listas y repasos pendientes. **Progreso** muestra próximos repasos y resultados reales. La interfaz tiene navegación persistente, fichas compactas y cuatro ejemplos por palabra en una ventana de detalle. No incluye puntos, premios ni rachas.
+**Inicio** muestra una sola acción principal según tu situación (elegir palabras, repasar pendientes o estudiar las nuevas) y tus listas con Estudiar y Examen directos. Renombrar, exportar y eliminar una lista están en su menú •••. **Progreso** muestra próximos repasos y resultados reales. No incluye puntos, premios ni rachas.
 
-En la Biblioteca, **Mostrar ejemplos / Ocultar ejemplos** despliega o pliega los cuatro ejemplos de todas las palabras de la vista. El botón **Modo oscuro / Modo claro** está en la parte superior de cualquier pantalla. Ambos ajustes se conservan localmente al volver a abrir la web o la app.
+En la Biblioteca, **Mostrar ejemplos / Ocultar ejemplos** despliega o pliega los cuatro ejemplos de todas las palabras de la vista. El modo oscuro se cambia con el icono junto a **Ajustes** o desde la página de Ajustes. Ambos ajustes se conservan localmente al volver a abrir la web o la app.
 
 Los intervalos de repaso son una heurística de 1, 3, 7, 14 y 30 días; no un algoritmo adaptativo validado. Consulta [la investigación y decisiones de diseño](docs/diseno-ux.md).
 
