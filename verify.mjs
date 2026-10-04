@@ -23,4 +23,21 @@ assert.equal(
 );
 assert.ok(words.every(word => word.examples.length === 4 && word.examples.every(example => example.length === 2 && example.every(Boolean))));
 assert.ok(words.every(word => new Set(word.examples.map(example => example[0])).size === 4));
+for (const word of words) {
+  for (const text of [word.ar, ...word.examples.map(example => example[0])]) {
+    for (const token of text.match(/[\u0621-\u064A\u0671-\u06D3\u064B-\u065F\u0670]+/g) ?? []) {
+      assert.match(token, /[\u064B-\u0652]/, `word ${word.number}: missing harakat in ${token}`);
+    }
+    let vowelsOnLetter = 0;
+    for (const character of text.normalize('NFD')) {
+      if (/[\u064B-\u0650\u0652]/.test(character)) {
+        vowelsOnLetter += 1;
+        assert.ok(vowelsOnLetter <= 1, `word ${word.number}: conflicting harakat in ${text}`);
+      } else if (!/[\u0651-\u065F\u0670]/.test(character)) {
+        vowelsOnLetter = 0;
+      }
+    }
+  }
+}
 console.log('Verified: 500 unique headwords, 2000 bilingual examples, unchanged categories and preserved identifiers 1–300.');
+console.log('Verified: harakat present in every Arabic vocabulary token, without conflicting vowel marks.');

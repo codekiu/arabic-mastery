@@ -56,7 +56,7 @@ jobs:
           tauriScript: npm run tauri
           tagName: ${{ github.ref_name }}
           releaseName: Vocabulario árabe ${{ github.ref_name }}
-          releaseBody: '500 palabras en árabe fuṣḥā con cuatro ejemplos cada una. Incluye listas, repasos y copias de seguridad. Descarga el instalador que corresponda a tu sistema.'
+          releaseBody: '500 palabras en árabe fuṣḥā con cuatro ejemplos bilingües y vocalizados cada una. Incluye listas, repasos y copias de seguridad. Descarga el instalador que corresponda a tu sistema.'
           releaseDraft: true
           args: --target ${{ matrix.target }} --bundles ${{ matrix.bundles }}
           releaseAssetNamePattern: 'Vocabulario-Arabe_[version]_[platform]_[arch][setup][ext]'

@@ -1,6 +1,6 @@
 # Arabic Mastery
 
-500 palabras con 4 ejemplos bilingües cada una. Funciona como web, HTML sin conexión y aplicación de escritorio con Tauri 2.
+500 palabras con 4 ejemplos bilingües y vocalizados cada una. Funciona como web, HTML sin conexión y aplicación de escritorio con Tauri 2.
 
 ## Estudiar
 
