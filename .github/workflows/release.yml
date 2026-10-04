@@ -1,0 +1,62 @@
+name: Release desktop
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: ${{ matrix.label }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - label: macOS Apple Silicon
+            os: macos-latest
+            target: aarch64-apple-darwin
+            bundles: dmg
+          - label: macOS Intel
+            os: macos-latest
+            target: x86_64-apple-darwin
+            bundles: dmg
+          - label: Windows x64
+            os: windows-latest
+            target: x86_64-pc-windows-msvc
+            bundles: nsis
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 --version
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - uses: swatinem/rust-cache@v2
+        with:
+          workspaces: './src-tauri -> target'
+      - run: npm ci
+      - run: npm run build
+      - run: node verify.mjs
+      - run: node verify_study.mjs
+      - uses: tauri-apps/tauri-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          APPLE_SIGNING_IDENTITY: '-'
+        with:
+          tauriScript: npm run tauri
+          tagName: ${{ github.ref_name }}
+          releaseName: Vocabulario árabe ${{ github.ref_name }}
+          releaseBody: '500 palabras en árabe fuṣḥā con cuatro ejemplos cada una. Incluye listas, repasos y copias de seguridad. Descarga el instalador que corresponda a tu sistema.'
+          releaseDraft: true
+          args: --target ${{ matrix.target }} --bundles ${{ matrix.bundles }}
+          releaseAssetNamePattern: 'Vocabulario-Arabe_[version]_[platform]_[arch][setup][ext]'

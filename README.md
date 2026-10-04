@@ -19,6 +19,10 @@ Los intervalos de repaso son una heurística de 1, 3, 7, 14 y 30 días; no un al
 
 Las listas se guardan localmente. No se sincronizan automáticamente entre la app, la web ni dispositivos. Guarda una copia para trasladarlas o conservar un respaldo.
 
+## Descargar la aplicación
+
+Los instaladores para macOS (Apple Silicon e Intel) y Windows están en [GitHub Releases](https://github.com/codekiu/arabic-mastery/releases/latest). Elige el archivo `.dmg` para tu Mac o el instalador `.exe` para Windows. Las versiones distribuidas no están firmadas con certificados comerciales; el sistema puede pedirte que confirmes la apertura.
+
 ## Aplicación Mac
 
 Abre `Vocabulario árabe.app`. Funciona sin conexión y usa un diálogo nativo para guardar CSV y copias JSON. Esta compilación local es para Apple Silicon; no está notarizada para distribución pública.
