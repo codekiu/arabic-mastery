@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0d2447">
-  <meta name="description" content="300 palabras del texto árabe con cuatro ejemplos en árabe y español para estudiar y repasar.">
+  <meta name="description" content="500 palabras en árabe fuṣḥā con cuatro ejemplos en árabe y español para estudiar y repasar.">
   <title>Arabic Mastery · Aprende a tu ritmo</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d2447'/%3E%3Cpath d='M17 20h30v5H17zm0 10h22v5H17zm0 10h30v5H17z' fill='%23f6c96d'/%3E%3C/svg%3E">
   <style>/*__STUDY_CSS__*/</style>
@@ -22,7 +22,7 @@
         <button data-page="progress"><span aria-hidden="true">▥</span>Progreso</button>
         <button class="mobile-settings" data-page="settings"><span aria-hidden="true">⚙</span>Ajustes</button>
       </nav>
-      <div class="sidebar-bottom"><div class="sidebar-note"><strong>300 palabras. Tu ritmo.</strong><p>Aprende en contexto, recuerda y vuelve a practicar.</p></div><button class="settings-nav" data-page="settings"><span aria-hidden="true">⚙</span>Ajustes y copias</button><span class="local-label"><i></i> Tu estudio se guarda aquí</span></div>
+      <div class="sidebar-bottom"><div class="sidebar-note"><strong>500 palabras. Tu ritmo.</strong><p>Aprende en contexto, recuerda y vuelve a practicar.</p></div><button class="settings-nav" data-page="settings"><span aria-hidden="true">⚙</span>Ajustes y copias</button><span class="local-label"><i></i> Tu estudio se guarda aquí</span></div>
     </aside>
     <main id="main" class="main">
       <header class="topbar"><span id="breadcrumb">Tu espacio de aprendizaje</span><div class="topbar-actions"><span class="course-tag">العَرَبِيَّةُ <span>Árabe fuṣḥā</span></span><button class="button theme-toggle" id="theme-toggle" aria-pressed="false">Modo oscuro</button></div></header>
@@ -47,6 +47,7 @@
   <dialog id="word-dialog" class="word-dialog" aria-labelledby="word-title"><div id="word-detail"></div></dialog>
   <dialog id="list-dialog" class="list-dialog" aria-labelledby="list-dialog-title"><form id="list-form"><div class="dialog-head"><h2 id="list-dialog-title">Crear lista</h2><button type="button" class="icon-button" id="list-dialog-close" aria-label="Cerrar">×</button></div><p class="muted">Agrupa palabras por tema, conversación o dificultad.</p><label class="field">Nombre de la lista<input id="list-name" maxlength="60" placeholder="Por ejemplo: Mi rutina diaria" required></label><p id="list-form-error" class="error" role="alert"></p><button class="button primary" type="submit">Guardar lista</button></form></dialog>
   <dialog id="file-panel" class="file-panel" aria-labelledby="file-title"><div class="dialog-head"><h2 id="file-title">Exportar</h2><button class="icon-button" id="file-close" aria-label="Cerrar">×</button></div><p class="muted">Descarga el archivo o copia su contenido.</p><textarea id="file-text" aria-label="Contenido del archivo" readonly></textarea><div class="actions"><button class="button primary" id="file-save">Descargar archivo</button><button class="button" id="file-copy">Copiar contenido</button></div><p id="file-status" role="status"></p></dialog>
+  <dialog id="restore-dialog" class="restore-dialog" aria-labelledby="restore-title"><div class="dialog-head"><h2 id="restore-title">Restaurar copia de seguridad</h2><button type="button" class="icon-button" id="restore-close" aria-label="Cerrar">×</button></div><p id="restore-summary"></p><p class="muted">Restaurar sustituye las listas, los resultados y los repasos de este dispositivo por los de la copia. También puedes añadir las listas de la copia y conservar las actuales.</p><div class="actions"><button type="button" class="button primary" id="restore-replace">Restaurar todo</button><button type="button" class="button" id="restore-merge">Añadir a mis datos</button></div><p id="restore-error" class="error" role="alert"></p></dialog>
   <input type="file" id="backup-file" accept=".json,application/json" hidden>
   <script>
     const groups = [
@@ -181,6 +182,7 @@
     ];
     /*__EXTRA_DATA__*/
     groups.flatMap(group => group.items).forEach((item, index) => { item.number = index + 1; });
+    /*__ADDITIONAL_DATA__*/
     /*__STUDY_JS__*/
   </script>
 </body>

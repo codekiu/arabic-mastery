@@ -1,6 +1,6 @@
 # Arabic Mastery
 
-300 palabras con 4 ejemplos bilingües cada una. Funciona como web, HTML sin conexión y aplicación de escritorio con Tauri 2.
+500 palabras con 4 ejemplos bilingües cada una. Funciona como web, HTML sin conexión y aplicación de escritorio con Tauri 2.
 
 ## Estudiar
 
@@ -9,7 +9,7 @@
 3. Desde la lista, elige una sesión de 10, 20 o todas las palabras y la dirección de las flashcards. Pulsa **Estudiar**, intenta recordar antes de mostrar la respuesta y elige **Repetir**, **Difícil** o **La recuerdo**.
 4. Usa **Hacer examen** para responder preguntas de opción múltiple y repasar los fallos. Los últimos resultados quedan guardados en la lista.
 5. **Exportar para Anki (CSV)** produce dos columnas: anverso y reverso. Al importar, selecciona coma como separador y permite HTML. No hay fila de encabezados. Cada reverso incluye los cuatro ejemplos.
-6. En **Ajustes**, **Guardar copia** guarda un JSON con listas, resultados y repasos. **Elegir archivo** añade esas listas sin borrar las existentes. La web también permite copiar el contenido cuando el navegador no puede descargar archivos.
+6. En **Ajustes** o desde **Gestionar esta lista**, guarda una copia JSON con todas las listas, resultados de exámenes y fechas de repaso. Elige dónde guardarla en la app de escritorio o en navegadores compatibles; en los demás navegadores se descarga el archivo. Al importar una copia, puedes restaurar todos los datos de ese archivo o añadirlos a los actuales. Una copia antigua de la aplicación sigue siendo compatible.
 
 **Inicio** ofrece acceso a las listas y repasos pendientes. **Progreso** muestra próximos repasos y resultados reales. La interfaz tiene navegación persistente, fichas compactas y cuatro ejemplos por palabra en una ventana de detalle. No incluye puntos, premios ni rachas.
 
@@ -32,4 +32,4 @@ Requiere Python 3, Node.js, Rust y las herramientas de desarrollo de macOS.
 - `node verify.mjs && node verify_study.mjs`
 - `npm run desktop:build`
 
-La aplicación se genera en `src-tauri/target/release/bundle/macos/`. Los archivos `vocab_extra.tsv` y `vocab_200.tsv` contienen el vocabulario añadido, organizado por tema. El archivo HTML de `dist/` incorpora todos los datos y recursos necesarios.
+La aplicación se genera en `src-tauri/target/release/bundle/macos/`. Los archivos `vocab_extra.tsv`, `vocab_200.tsv` y `vocab_additional.tsv` contienen el vocabulario añadido, organizado por tema. El archivo HTML de `dist/` incorpora todos los datos y recursos necesarios.
