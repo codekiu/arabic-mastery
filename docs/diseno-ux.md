@@ -33,7 +33,7 @@ Las sesiones sustituyen el contenido principal. Se muestra una palabra o pregunt
 
 ## Lenguaje visual
 
-Paleta marfil, tinta oscura y verde profundo; un acento cálido para las palabras nuevas. Tipografía del sistema para que la app funcione sin conexión. Árabe en un tamaño generoso y dirección RTL aislada; español en líneas independientes LTR. Bordes discretos, sombras contenidas y espaciado coherente. Iconos acompañados de texto. No se usan premios, cifras de progreso inventadas ni rachas con penalizaciones.
+Paleta azul pizarra de baja saturación (#305f8c) sobre gris frío claro, con un acento ámbar para lo pendiente. En modo oscuro, fondo gris azulado (#12171e) en lugar de negro puro, texto gris claro (#e2e8ef) en lugar de blanco puro y un azul desaturado (#9dbbe0) como acento, para reducir el deslumbramiento y la vibración del texto, siguiendo las pautas de tema oscuro de Material Design. Tipografía del sistema para que la app funcione sin conexión. Árabe en un tamaño generoso y dirección RTL aislada; español en líneas independientes LTR. Bordes discretos, sombras contenidas y espaciado coherente. Iconos acompañados de texto. No se usan premios, cifras de progreso inventadas ni rachas con penalizaciones.
 
 ## Accesibilidad y continuidad
 

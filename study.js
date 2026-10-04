@@ -144,7 +144,7 @@ function render(){
   if(session){renderSession();return;}
   if(mode==='home')renderHome();if(mode==='lists')renderWorkspace();if(mode==='progress')renderProgress();if(mode==='settings')renderSettings();
   if(mode!=='catalog')return;
-  $('list-select').innerHTML=selectOptions();
+  $('list-select').innerHTML=selectOptions()+'<option value="__new">+ Nueva lista…</option>';
   $('target-count').textContent=plural(activeList().words.length,'palabra')+' en la lista';
   const shown=words.filter(matchesFilters);
   $('catalog-summary').textContent=shown.length===words.length?'':plural(shown.length,'palabra')+' con estos filtros';
@@ -164,7 +164,7 @@ function dispatch(action){
 }
 document.addEventListener('click',e=>{const page=e.target.closest('[data-page]');if(page){switchMode(page.dataset.page);return;}const action=e.target.closest('[data-action]');if(action){dispatch(action.dataset.action);return;}const topicButton=e.target.closest('[data-add-topic]');if(topicButton){addTopic(Number(topicButton.dataset.addTopic));return;}const studyButton=e.target.closest('[data-study],[data-exam]');if(studyButton){const id=studyButton.dataset.study||studyButton.dataset.exam;if(!state.lists.some(l=>l.id===id))return;state.active=id;persist('');studyButton.dataset.study?startFlash(selectSessionWords(listWords())):startExam(selectSessionWords(listWords(),false));return;}const list=e.target.closest('[data-list]');if(list){openList(list.dataset.list);return;}const detail=e.target.closest('[data-detail]');if(detail){openDetail(detail.dataset.detail);return;}const word=e.target.closest('[data-word]');if(word)toggleWord(word.dataset.word);});
 $('brand-home').onclick=e=>{e.preventDefault();switchMode('home');};
-$('list-select').onchange=e=>{state.active=e.target.value;persist('Lista seleccionada.');render();};
+$('list-select').onchange=e=>{if(e.target.value==='__new'){e.target.value=state.active;openListDialog();return;}state.active=e.target.value;persist('Ahora añades a «'+activeList().name+'».');render();};
 $('topic-filter').innerHTML='<option value="all">Todos los temas</option>'+groups.map((g,i)=>`<option value="${i}">${escapeHtml(g.title)}</option>`).join('');
 $('topic-filter').onchange=e=>{topic=e.target.value;render();};
 document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));render();});
@@ -173,7 +173,7 @@ $('theme-toggle').onclick=()=>{preferences.darkMode=!preferences.darkMode;savePr
 $('examples-toggle').onclick=()=>{preferences.showExamples=!preferences.showExamples;savePreferences();render();};
 $('study').onclick=e=>{const hidden=document.body.classList.toggle('hidden-translation');e.currentTarget.setAttribute('aria-pressed',String(hidden));e.currentTarget.textContent=hidden?'Mostrar significados':'Ocultar significados';};
 $('list-dialog-close').onclick=()=>$('list-dialog').close();
-$('list-form').onsubmit=e=>{e.preventDefault();const name=$('list-name').value.trim();try{if(!name||name.length>60)throw Error('Escribe un nombre de entre 1 y 60 caracteres.');if(editingList){state.lists.find(l=>l.id===editingList).name=name;persist('Lista renombrada.');render();}else createList(name);$('list-dialog').close();}catch(err){$('list-form-error').textContent=err.message;}};
+$('list-form').onsubmit=e=>{e.preventDefault();const name=$('list-name').value.trim();try{if(!name||name.length>60)throw Error('Escribe un nombre de entre 1 y 60 caracteres.');if(editingList){state.lists.find(l=>l.id===editingList).name=name;persist('Lista renombrada.');render();}else{const from=mode;createList(name);if(from==='catalog'){mode='catalog';render();announce('Lista «'+activeList().name+'» creada. Las palabras que añadas irán a ella.');}}$('list-dialog').close();}catch(err){$('list-form-error').textContent=err.message;}};
 function openDetail(id){if(!byId.has(id))return;detailId=id;renderDetail();$('word-dialog').showModal();}
 function renderDetail(){const w=byId.get(detailId),added=activeList().words.includes(detailId);$('word-detail').innerHTML=`<div class="dialog-head"><span class="kind">${kinds[w.kind]} · ${escapeHtml(w.topicName)}</span><button class="icon-button" id="word-close" aria-label="Cerrar ficha">×</button></div><h2 id="word-title" class="term arabic" lang="ar" dir="rtl">${escapeHtml(w.ar)}</h2><p class="meaning">${escapeHtml(w.es)}</p><div class="word-detail-actions"><select id="detail-list" aria-label="Añadir palabra a una lista">${selectOptions()}</select><button class="button" data-word="${w.number}" aria-pressed="${added}">${added?'✓ En esta lista · Retirar':'+ Añadir a la lista'}</button></div>${examplesHtml(w)}`;$('word-close').onclick=()=>$('word-dialog').close();$('detail-list').onchange=e=>{state.active=e.target.value;persist('Lista seleccionada.');render();renderDetail();};}
 $('word-dialog').addEventListener('close',()=>detailId=null);
